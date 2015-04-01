@@ -1,0 +1,6 @@
+Esta es una segunda version del codigo serial que simula el set completo de ecuaciones.
+
+Aca voy a ir agregando las cosas pertinentes del problema y del codigo, junto con los nombres de las
+funciones y sus descripciones.
+
+El 
