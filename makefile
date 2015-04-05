@@ -1,7 +1,7 @@
 lista = full_s_2.c funciones_s_2.c full_s_2.h
 all: $(lista)
-	gcc $(lista) -O2 -lm -o full_s_2
-	#gcc $(lista) -O2 -lm -o full_s_2
+	gcc $(lista) -O3 -lm -o programa_s_2
+	#gcc $(lista) -O3 -lm -o programa_s_2
 
 clean:
 	rm -f *.o

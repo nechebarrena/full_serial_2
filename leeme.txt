@@ -2,5 +2,108 @@ Esta es una segunda version del codigo serial que simula el set completo de ecua
 
 Aca voy a ir agregando las cosas pertinentes del problema y del codigo, junto con los nombres de las
 funciones y sus descripciones.
+*******************************************************************************************************************
+*******************************************************************************************************************
+*******************************************************************************************************************
+*******************************************************************************************************************
+*******************************************************************************************************************
+*******************************************************************************************************************
+*******************************************************************************************************************
 
-El 
+La ruta donde estoy guardando este repositorio en la notebook es :
+
+/home/nicolas/Documentos/Nicolas/YTEC/full_serial_2
+
+La ruta donde estoy guardando este repositorio en la pc de mi casa es :
+
+
+La ruta donde estoy guardando este repositorio en la workstation de YTEC es :
+
+
+El servidor remoto donde lo estoy guardando es :
+
+http://github.com/nechebarrena/full_serial_2.git
+El usuario es : nechebarrena
+La contraseña es : poludin123
+Se puede entrar desde la web y ver el repositorio en : www.github.com
+
+--MUY IMPORTANTE-- : Cada vez que se termine de trabajar (editar los archivos) en alguna de las PC el contenido 
+SOLO estara actualizado en esa maquina. Se debe mantener constantemente actualizado el servidor y actualizar 
+cada pc bajando el repositorio desde este.
+En resumen:
+Antes de iniciar el trabajo se debe actualizar el contenido de la pc (servidor --> pc) con el siguiente comando:
+git pull http://github.com/nechebarrena/full_serial_2.git
+Luego, al finalizar el trabajo, se debe actualizar el servidor (pc --> servidor) con el siguiente comando:
+git push http://github.com/nechebarrena/full_serial_2.git
+
+Esto es MUY importante para no generar diferencias entre las versiones y no editar por error archivos que 
+esten obsoletos. 
+
+*******************************************************************************************************************
+*******************************************************************************************************************
+Descripcion del problema : Estoy resolviendo el set completo de ecuaciones para calcular la saturacion en funcion
+del tiempo. Para ello tengo que calcular el campo de presiones en cada iteracion temporal. En este problema
+estoy incluyendo la presion capilar. Las ecuaciones estan en el libro "6. Peaceman - Fundamentals of Numerical Reservoir Simulation" .
+Las ecuaciones son :
+6-11 pag 141. Esta ecuacion me permite calcular el campo de presiones.
+6-16 pag 141. Esta ecuacion me permite calcular el campo de saturaciones.
+6-15 pag 141. Esta ecuacion me permite calcular el campo de velocidades totales.
+6-13 pag 141. Esta ecuacion me permite calcular el campo de velocidades para la fase del petroleo.
+6-14 pag 141. Esta ecuacion me permite calcular el campo de velocidades para la fase del agua.
+6-9 pag 140. Esta ecuacion me permite calcular el campo de lambda total.
+6-10 pag 140. Esta ecuacion me permite calcular el campo de lambda diferencia.
+1-33 pag 14. Esta ecuacion relaciona las saturaciones de las dos fases.
+1-35 pag 14. Esta ecuacion relaciona la presion capilar (como funcion de Sw) con las presiones de ambas fases.
+1-37a pag 15. Esta ecuacion me da el valor de la permeabilidad relativa del petroleo.
+1-37b pag 15. Esta ecuacion me da el valor de la permeabilidad relativa del agua.
+1-46 pag 17. Esta ecuacion me dice cuanto vale la presion promedio en termino de las presiones de las otras fases.
+1-48a pag 18. Esta ecuacion me dice cuanto vale lambda para el petroleo.
+1-48b pag 18. Esta ecuacion me dice cuanto vale lambda para el agua.
+1-55 pag 19. Esta ecuacion me dice cuanto vale la funcion Fw.
+
+Ademas tengo las siguientes ecuaciones "empiricas".
+
+Ecuacion para Krn
+Ecuacion para Krw
+Ecuacion para Pc
+
+Este set completo de ecuaciones me permite resolver el problema de forma univoca.
+
+Basicamente las dos ecuaciones que voy a tener que resolver son 6-11 y 6-16. El campo de presiones (6-11) 
+lo voy a tener que calcular en cada iteracion temporal. Cuando lo tenga resuelto voy a poder calcular el campo de 
+velocidades y con ellas voy a poder evolucionar un paso la saturacion (6-16). 
+Para resolver ambas ecuaciones voy a usar un esquema de volumenes finitos.
+
+*******************************************************************************************************************
+*******************************************************************************************************************
+Descripcion del programa :
+
+En la carpeta del proyecto hay 4 archivos necesarios para compilar el programa. 
+
+full_s_2.c : Es el archivo fuente donde esta el main. 
+full_s_2.h : Es el archivo header donde estan todas las declaraciones de funciones.
+funciones_s_2.c : Es el archivo donde estan implementadas todas las funciones.
+makefile : es el archivo que se ejecuta para compilar el programa.
+
+Este codigo no tiene ningun segmento paralelo, por lo cual se compilar usando gcc sin ninguna bandera de 
+paralelizacion. Las banderas activadas son -O3 que setea el nivel de optimizacion utilizado por el compilador
+y -lm que permite compilar la libreria math.h .
+Una vez que se ejecuta el makefile se genera un ejecutable llamado programa_s_2 . Para ejecutar este programa
+basta con poner en la terminal (parado en la misma ruta) ./programa_s_2 .
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
