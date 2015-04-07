@@ -78,11 +78,12 @@ Para resolver ambas ecuaciones voy a usar un esquema de volumenes finitos.
 *******************************************************************************************************************
 Descripcion del programa :
 
-En la carpeta del proyecto hay 4 archivos necesarios para compilar el programa. 
+En la carpeta del proyecto hay 5 archivos necesarios para compilar el programa. 
 
 full_s_2.c : Es el archivo fuente donde esta el main. 
 full_s_2.h : Es el archivo header donde estan todas las declaraciones de funciones.
-funciones_s_2.c : Es el archivo donde estan implementadas todas las funciones.
+funciones_s_2.c : Es el archivo donde estan implementadas todas las funciones auxiliares.
+calculo_presion.c : Es el archivo donde esta la funcion que hace el calculo de la presion.
 makefile : es el archivo que se ejecuta para compilar el programa.
 
 Este codigo no tiene ningun segmento paralelo, por lo cual se compilar usando gcc sin ninguna bandera de 
