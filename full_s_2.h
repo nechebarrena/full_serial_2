@@ -17,13 +17,16 @@
 
 #define q_n 0.0001
 #define q_w 0.0001
+#define po 0.1
 
-#define cachito 0.00000000001
+#define cachito 0.0000000001
 
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
 /* Definicion de variables globales                                              */
 double *presion;
+double *presion_N;
+double *presion_capilar;
 double *saturacion;
 double *K;
 double *Q_W;
@@ -34,6 +37,7 @@ double *krn;
 double *krw;
 double *lambda_t;
 double *lambda_d;
+double *termino_presion_capilar;
 
 double *lambda_t_1;
 double *lambda_t_2;
@@ -44,6 +48,8 @@ double *lambda_d_1;
 double *lambda_d_2;
 double *lambda_d_3;
 double *lambda_d_4;
+double diferencia;
+double error;
 
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
@@ -62,8 +68,22 @@ void calcular_lambda_t();
 void calcular_lambda_d();
 void calcular_lambda_t_1_2_3_4();
 void calcular_lambda_d_1_2_3_4();
-
+void calcular_presion_capilar();
+void calcular_termino_presion_capilar();
+void calculo_diferencia();
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
 /*  Funciones del archivo calculo_presion.c                                      */
 void calculo_presion();
+void recinto_interno();
+void borde_izquierdo();
+void borde_derecho();
+void borde_superior();
+void borde_inferior();
+void esquina_superior_izquierda();
+void esquina_superior_derecha();
+void esquina_inferior_izquierda();
+void esquina_inferior_derecha();
+void copiar();
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////

@@ -93,6 +93,86 @@ Una vez que se ejecuta el makefile se genera un ejecutable llamado programa_s_2 
 basta con poner en la terminal (parado en la misma ruta) ./programa_s_2 .
 
 
+*******************************************************************************************************************
+*******************************************************************************************************************
+Funciones del archivo funciones_s_2.c
+
+void guardar(double *matriz);
+void inicializar_presion();
+void inicializar_saturacion();
+void inicializar_K();
+void inicializar_Q_W();
+void inicializar_Q_N();
+void calcular_lambda_n();
+void calcular_lambda_w();
+void calcular_krw();
+void calcular_krn();
+void calcular_lambda_t();
+void calcular_lambda_d();
+void calcular_lambda_t_1_2_3_4();
+void calcular_lambda_d_1_2_3_4();
+void calcular_presion_capilar();
+void calcular_termino_presion_capilar();
+void calculo_diferencia();
+
+Descripcion :::
+
+
+*******************************************************************************************************************
+*******************************************************************************************************************
+
+Funciones del archivo calculo_presion.c
+
+void calculo_presion();
+void recinto_interno();
+void borde_izquierdo();
+void borde_derecho();
+void borde_superior();
+void borde_inferior();
+void esquina_superior_izquierda();
+void esquina_superior_derecha();
+void esquina_inferior_izquierda();
+void esquina_inferior_derecha();
+void copiar();
+
+Descripcion :::
+
+*******************************************************************************************************************
+*******************************************************************************************************************
+
+Historial :::
+--------------------------
+Miercoles 8 de abril.
+
+Al inicio del dia tengo las funciones que calculan los lambada petroleo,agua, total y diferencia (n,w,t,d)
+funcionando y la funcion que calcula los terminos 1,2,3 y 4 de lambda diferencia. Esta funcion no estoy seguro que
+este funcionando correctamente. Al graficar alguno de estos campos se ven unos picos medios raros en la version 
+FQS y un escalon en la version tipo canal. Es curioso que ambas situaciones se observan en el punto 6 de la 
+grilla. Sospecho que tengo un error pero aun no puedo encontrarlo.
+Implemente la funcion para calcular los terminos 1,2,3 y 4 de lambda total. Esta funcion la COPIE (copie el codigo)
+de la de lambda diferencia y no tiene los mismos problemas que la otra. Quizas no sea un problema de la funcion.
+Implemente la funcion para calcular la presion capilar.
+Implemente la funcion para calcular el termino de la presion capilar en el calculo de la presion.
+Al graficar el termino de la presion capilar tenia mucho error (muchos picos y escalones). Si en vez de usar la 
+lambda_d usaba lambda_t daba muy lindo. El error viene de propagar los picos de los lambda_d_i. No encuentro el error
+en esos calculos. Intente suavizarlo usando el calculo entre tres terminos pero tampoco funciono (o sea, usando i-1 , i e i+1 ).
+Luego en vez de usar la formula de asociacion en paralelo para resistencias cambie al promedio entre los dos valores
+. Esto funciono mucho mejor. Ahora es mas suave. La verdad que no entiendo por que lo otro generaba esos picos. Hay que
+revisar esto.
+Implemente las funciones que calculan el campo de presiones. Ademas implemente una funcion que evalua la diferencia entre
+una iteracion y la anterior. Esta funcion me permite iterar el campo hasta que el error sea menor a una prefijado. Cuando
+pongo una presion capilar nunca llego a ese error. Cuando apago el termino capilar si llego y por lo tanto tengo un numero 
+finito de iteraciones.
+Aunque el campo de termino_presion_capilar es mucho mas suave que antes no lo es completamente. Es probable que el error venga 
+de aca. Debo revisar este calculo y ver si puedo hacer que sea completamente suave.
+La funcion que calcula el campo de presiones lo hace fijando un caudal constante en los lugares de inyeccion.
+
+En resumen: Al finalizar el dia tengo: Una funcion que calcula el campo de presiones que parece funcionar. Una funcion que 
+calcula el termino de presion capilar que parece funcionar y una funcion que calcula los terminos lambda_d_i que no parece funcionar
+de la mejor forma ya que su resultado no es un campo del todo suave.
+--------------------------
+
+
 
 
 
