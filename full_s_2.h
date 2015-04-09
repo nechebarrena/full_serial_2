@@ -20,6 +20,7 @@
 #define po 0.1
 
 #define cachito 0.0000000001
+#define error 0.0000000000001
 
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
@@ -27,16 +28,22 @@
 double *presion;
 double *presion_N;
 double *presion_capilar;
+
 double *saturacion;
+
 double *K;
 double *Q_W;
 double *Q_N;
+
 double *lambda_n;
 double *lambda_w;
+
 double *krn;
 double *krw;
+
 double *lambda_t;
 double *lambda_d;
+
 double *termino_presion_capilar;
 
 double *lambda_t_1;
@@ -48,8 +55,38 @@ double *lambda_d_1;
 double *lambda_d_2;
 double *lambda_d_3;
 double *lambda_d_4;
+
 double diferencia;
-double error;
+
+double *presion_n;
+double *presion_w;
+
+double *lambda_n_1;
+double *lambda_n_2;
+double *lambda_n_3;
+double *lambda_n_4;
+
+double *lambda_w_1;
+double *lambda_w_2;
+double *lambda_w_3;
+double *lambda_w_4;
+
+double *U_w_1;
+double *U_w_2;
+double *U_w_3;
+double *U_w_4;
+
+double *U_n_1;
+double *U_n_2;
+double *U_n_3;
+double *U_n_4;
+
+double *U_t_1;
+double *U_t_2;
+double *U_t_3;
+double *U_t_4;
+
+double *f_w;
 
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
@@ -71,6 +108,14 @@ void calcular_lambda_d_1_2_3_4();
 void calcular_presion_capilar();
 void calcular_termino_presion_capilar();
 void calculo_diferencia();
+void calcular_presion_n();
+void calcular_presion_w();
+void calcular_lambda_n_1_2_3_4();
+void calcular_lambda_w_1_2_3_4();
+void calcular_U_n_1_2_3_4();
+void calcular_U_w_1_2_3_4();
+void calcular_U_t_1_2_3_4();
+void calcular_f_w();
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
 /*  Funciones del archivo calculo_presion.c                                      */

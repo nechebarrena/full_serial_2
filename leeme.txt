@@ -114,6 +114,14 @@ void calcular_lambda_d_1_2_3_4();
 void calcular_presion_capilar();
 void calcular_termino_presion_capilar();
 void calculo_diferencia();
+void calcular_presion_n();
+void calcular_presion_w();
+void calcular_lambda_n_1_2_3_4();
+void calcular_lambda_w_1_2_3_4();
+void calcular_U_n_1_2_3_4();
+void calcular_U_w_1_2_3_4();
+void calcular_U_t_1_2_3_4();
+void calcular_f_w();
 
 Descripcion :::
 
@@ -139,7 +147,101 @@ Descripcion :::
 
 *******************************************************************************************************************
 *******************************************************************************************************************
+Lista de variables, parametros y nombres.
 
+A lo largo de este codigo voy a usar la nomenclatura del libro que usa "w" para la fase del agua y "n"  para la 
+fase del petroleo. Todas las varaibles que tengan estas letras indican a que fase hacen referencia. Por otro lado
+voy a usar "d" para la diferencia de cosas y "t" para indicar las totales. 
+La presion capilar tiene el nombre correcto y la presion a secas representa a la presion promedio (entre ambas fases).
+
+
+Definicion de parametros globales                                             
+
+#define TAM_C 100
+#define TAM_F 100
+#define CB 1   
+
+#define mu_w 1
+#define mu_n 2
+
+#define q_n 0.0001
+#define q_w 0.0001
+#define po 0.1
+
+#define cachito 0.0000000001
+#define error 0.0000000000001
+
+
+Definicion de variables globales                                              
+
+double *presion;
+double *presion_N;
+double *presion_capilar;
+
+double *saturacion;
+
+double *K;
+double *Q_W;
+double *Q_N;
+
+double *lambda_n;
+double *lambda_w;
+
+double *krn;
+double *krw;
+
+double *lambda_t;
+double *lambda_d;
+
+double *termino_presion_capilar;
+
+double *lambda_t_1;
+double *lambda_t_2;
+double *lambda_t_3;
+double *lambda_t_4;
+
+double *lambda_d_1;
+double *lambda_d_2;
+double *lambda_d_3;
+double *lambda_d_4;
+
+double diferencia;
+
+double *presion_n;
+double *presion_w;
+
+double *lambda_n_1;
+double *lambda_n_2;
+double *lambda_n_3;
+double *lambda_n_4;
+
+double *lambda_w_1;
+double *lambda_w_2;
+double *lambda_w_3;
+double *lambda_w_4;
+
+double *U_w_1;
+double *U_w_2;
+double *U_w_3;
+double *U_w_4;
+
+double *U_n_1;
+double *U_n_2;
+double *U_n_3;
+double *U_n_4;
+
+double *U_t_1;
+double *U_t_2;
+double *U_t_3;
+double *U_t_4;
+
+double *f_w;
+
+
+
+
+*******************************************************************************************************************
+*******************************************************************************************************************
 Historial :::
 --------------------------
 Miercoles 8 de abril.
@@ -171,6 +273,20 @@ En resumen: Al finalizar el dia tengo: Una funcion que calcula el campo de presi
 calcula el termino de presion capilar que parece funcionar y una funcion que calcula los terminos lambda_d_i que no parece funcionar
 de la mejor forma ya que su resultado no es un campo del todo suave.
 --------------------------
+Jueves 9 de abril.
+
+Cambie la funcion que calcula los lambda_d_i. Hice que haga el promedio simple entre vecinos para calcular el lambda sobre los bordes.
+El dia anterior habia hecho esto pero solo en el recinto interior, ahora lo hice en todo el recinto. Esto arreglo los bordes y picos que
+tenian estos campos. 
+Al arreglar esto ahora SI converge el campo de presiones cuando le pongo presion capilar. 
+Agregue las funciones que dado los campos de presion (promedio) y presion capilar calcular las presiones de la fase petroleo (n)
+y de la fase agua (w).
+Agregue las funciones que calculan los lambdas_w_i y lambda_n_i usando los lambdas_t_i y lambda_d_i.
+Agreugue las funciones que calculan U_w_i y U_n_i usando los lambdas_w_i y lambda_n_i y las presion_w y presion_n.
+Agregue la funcion que calcula U_t_i usando U_w_i y U_n_i.
+Agregue la funcion que calcula f_w usando la saturacion.
+
+
 
 
 
