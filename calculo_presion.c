@@ -13,7 +13,7 @@ esquina_superior_derecha();
 esquina_inferior_izquierda();
 esquina_inferior_derecha();
 calculo_diferencia();
-printf("\n diferencia =%.16f \n",diferencia);
+//printf("\n diferencia =%.16f \n",diferencia);
 copiar();
 
 }

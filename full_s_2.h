@@ -8,19 +8,21 @@
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
 /* Definicion de parametros globales                                             */
-#define TAM_C 100
-#define TAM_F 100
+#define TAM_C 80
+#define TAM_F 80
 #define CB 1   // 0 para una condicion de borde tipo canal y 1 para una tipo FQS
 
 #define mu_w 1
-#define mu_n 2
+#define mu_n 50
 
-#define q_n 0.0001
-#define q_w 0.0001
-#define po 0.1
+#define q_n 0.01
+#define q_w 0.01
+#define po 0.0
 
 #define cachito 0.0000000001
-#define error 0.0000000000001
+#define error 0.000000001
+
+#define courant 0.1
 
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
@@ -30,6 +32,7 @@ double *presion_N;
 double *presion_capilar;
 
 double *saturacion;
+double *saturacion_N;
 
 double *K;
 double *Q_W;
@@ -88,6 +91,8 @@ double *U_t_4;
 
 double *f_w;
 
+double delta_t;
+
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
 /* Funciones del archivo funciones_s_2.c                                         */
@@ -132,3 +137,15 @@ void esquina_inferior_derecha();
 void copiar();
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
+/* Funciones del archivo calculo_saturacion                                      */
+void calculo_saturacion();
+void recinto_interno_s();
+void borde_izquierdo_s();
+void borde_derecho_s();
+void borde_superior_s();
+void borde_inferior_s();
+void esquina_superior_izquierda_s();
+void esquina_superior_derecha_s();
+void esquina_inferior_izquierda_s();
+void esquina_inferior_derecha_s();
+void copiar_s();

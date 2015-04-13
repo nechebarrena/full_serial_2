@@ -13,6 +13,7 @@ int main(void){
   presion_capilar=malloc(sizeof(double)*TAM_C*TAM_F);
   
   saturacion=malloc(sizeof(double)*TAM_C*TAM_F);
+  saturacion_N=malloc(sizeof(double)*TAM_C*TAM_F);
   
   Q_W=malloc(sizeof(double)*TAM_C*TAM_F);
   Q_N=malloc(sizeof(double)*TAM_C*TAM_F);
@@ -77,6 +78,10 @@ int main(void){
   inicializar_Q_N();
   inicializar_Q_W();
   inicializar_K();
+  delta_tiempo();
+  
+  for(t=0 ; t< 4150 ; t++){
+  printf("\n Iteracion = %i \n",t);
   calcular_lambda_w();
   calcular_lambda_n();
   calcular_lambda_t();
@@ -101,14 +106,15 @@ int main(void){
   calcular_U_t_1_2_3_4();
   calcular_f_w();
   
+  calculo_saturacion();
+  }
+  
+  guardar(saturacion);
   
   
-  guardar(f_w);
   
   
-  
-  
-  
+  printf("\n \n \n Delta_T = %.15f    Tiempo Total=%.15f\n \n",delta_t,delta_t*1000);
   printf("\n \n \n.... FIN ....\n \n");
   
   return 0;

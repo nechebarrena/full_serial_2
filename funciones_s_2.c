@@ -885,10 +885,10 @@ void calcular_U_t_1_2_3_4(){
   
   for(f=0 ; f<TAM_F ; f++){
     for(c=0 ; c<TAM_C ; c++){
-      U_t_1[TAM_C*f + c]= U_n_1[TAM_C*f + c] + U_w_1[TAM_C*f + c] ;
-      U_t_2[TAM_C*f + c]= U_n_2[TAM_C*f + c] + U_w_2[TAM_C*f + c] ;
-      U_t_3[TAM_C*f + c]= U_n_3[TAM_C*f + c] + U_w_3[TAM_C*f + c] ;
-      U_t_4[TAM_C*f + c]= U_n_4[TAM_C*f + c] + U_w_4[TAM_C*f + c] ;
+      U_t_1[TAM_C*f + c]= -1.0*(U_n_1[TAM_C*f + c] + U_w_1[TAM_C*f + c]) ;
+      U_t_2[TAM_C*f + c]= -1.0*(U_n_2[TAM_C*f + c] + U_w_2[TAM_C*f + c]) ;
+      U_t_3[TAM_C*f + c]= -1.0*(U_n_3[TAM_C*f + c] + U_w_3[TAM_C*f + c]) ;
+      U_t_4[TAM_C*f + c]= -1.0*(U_n_4[TAM_C*f + c] + U_w_4[TAM_C*f + c]) ;
     }
   }
   
@@ -910,6 +910,13 @@ void calcular_f_w(){
       f_w[TAM_C*f + c]= (1.0*arriba)/(1.0*abajo);
     }
   }
+  
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void delta_tiempo(){
+  
+  double delta_x=1.0/TAM_C;
+  delta_t=courant*delta_x*delta_x ;
   
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

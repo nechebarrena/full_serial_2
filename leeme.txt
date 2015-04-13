@@ -78,12 +78,13 @@ Para resolver ambas ecuaciones voy a usar un esquema de volumenes finitos.
 *******************************************************************************************************************
 Descripcion del programa :
 
-En la carpeta del proyecto hay 5 archivos necesarios para compilar el programa. 
+En la carpeta del proyecto hay 6 archivos necesarios para compilar el programa. 
 
 full_s_2.c : Es el archivo fuente donde esta el main. 
 full_s_2.h : Es el archivo header donde estan todas las declaraciones de funciones.
 funciones_s_2.c : Es el archivo donde estan implementadas todas las funciones auxiliares.
 calculo_presion.c : Es el archivo donde esta la funcion que hace el calculo de la presion.
+calculo_saturacion.c : Es el archivo donde esta la funcion que hace la evolucion de la saturacion en un paso.
 makefile : es el archivo que se ejecuta para compilar el programa.
 
 Este codigo no tiene ningun segmento paralelo, por lo cual se compilar usando gcc sin ninguna bandera de 
@@ -142,6 +143,27 @@ void esquina_superior_derecha();
 void esquina_inferior_izquierda();
 void esquina_inferior_derecha();
 void copiar();
+
+Descripcion :::
+
+
+
+*******************************************************************************************************************
+*******************************************************************************************************************
+
+Funciones del archivo calculo_saturacion.c
+
+void calculo_saturacion();
+void recinto_interno_s();
+void borde_izquierdo_s();
+void borde_derecho_s();
+void borde_superior_s();
+void borde_inferior_s();
+void esquina_superior_izquierda_s();
+void esquina_superior_derecha_s();
+void esquina_inferior_izquierda_s();
+void esquina_inferior_derecha_s();
+void copiar_s();
 
 Descripcion :::
 
@@ -237,7 +259,7 @@ double *U_t_4;
 
 double *f_w;
 
-
+double delta_t;
 
 
 *******************************************************************************************************************
@@ -286,7 +308,26 @@ Agreugue las funciones que calculan U_w_i y U_n_i usando los lambdas_w_i y lambd
 Agregue la funcion que calcula U_t_i usando U_w_i y U_n_i.
 Agregue la funcion que calcula f_w usando la saturacion.
 
+--------------------------
+Lunes 13 de abril.
 
+Agregue un archivo nuevo "calculo_saturacion.c" donde puse las funciones que me permiten evolucionar la saturacion un paso temporal.
+En teoria con esto el codigo deberia funcionar completamente ya que tengo la funcion que calcula el campo de presiones, la que 
+evoluciona la saturacion y todas las funciones auxiliares que necesito. Por ahora no anda bien pero tampoco tan mal.
+Posibles errores que descubri: La velocidad total U_t_i me da cambiada de signo. Esto es un problema grave que """solucione""" cambiando
+el signo a mano, pero no se de donde viene el error aca. Yo creo que viene del signo de lambda 
+(U_t = -lambda_o*grad(presion_o)  + -lambda_w*grad(presion_w)  ) .
+El campo de presiones da como deberia (al menos en su gradiente) asi que el error debe venir de los lambdas. Esto es fundamental arreglarlo.
+El segundo error que encontre fue en la magnitud de Q_W. Cuando lo corria con Q_W tal como lo habia seteado me daba que en el nodo donde inyectaba 
+no se cumplia laplace. Para que pase esto multiplique Q_W por 4 a la fuerza. Este factor 4 no se de donde sale. Por lo redondo del numero y por ser en
+particular 4 me da la sensacion que debe venir de la discretizacion y de como integro sobre las 4 caras. Tambien debo entender de donde viene esto
+y arreglarlo. Ademas debo recordar que SOLO cambie (agregue este factor 4) en el nodo de inyeccion de FSQ. Para probar con la geometria tipo canal
+debo cambiar esto en los demas lugares de inyeccion.
+Todas estas pruebas las estoy haciendo con la presion capilar apagada. 
+Otro error que veo es que el programa no logra converger el campo de presiones cuando, sospecho, se genera un frente de choque muy vertical. 
+Deberia correr la simulacion hasta el momento justo anterior a que se cuelgue y ver cual es la situacion en ese momento. 
+Por ultimo, no estoy seguro de que la evolucion de la saturacion este teniendo en cuenta la relacion de viscosidades. Esto lo digo solo de mirar 
+la forma de la saturacion evolucionada y de compararla con los que recuerdo del programa hecho en la tesis.
 
 
 
