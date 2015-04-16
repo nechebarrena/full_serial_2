@@ -7,6 +7,8 @@ int main(void){
   
   printf("\n.... Programa full V 2.0 ....\n");
   int t=0;
+  double tiempo_total=0.0;
+  int iteraciones=12000;
   
   presion=malloc(sizeof(double)*TAM_C*TAM_F);
   presion_N=malloc(sizeof(double)*TAM_C*TAM_F);
@@ -79,8 +81,10 @@ int main(void){
   inicializar_Q_W();
   inicializar_K();
   delta_tiempo();
+  tiempo_total=delta_t*iteraciones;
+  printf("\n \n \n Delta_T = %.15f    Tiempo Total=%.15f\n \n",delta_t,tiempo_total);
   
-  for(t=0 ; t< 4150 ; t++){
+  for(t=0 ; t< iteraciones ; t++){
   printf("\n Iteracion = %i \n",t);
   calcular_lambda_w();
   calcular_lambda_n();
@@ -93,10 +97,21 @@ int main(void){
   calcular_termino_presion_capilar();
   
   diferencia=0.001;
+  if(t==0){
   while(diferencia>error){
-  //for(t=0 ; t<1 ; t++){  
+  //for(t=0 ; t<1 ; t++){
+  printf("\n Iteracion =%i    diferencia =%.16f \n",t,diferencia);  
   calculo_presion();
   }
+  }
+  
+  int k=0;
+  for(k=0 ; k<10000 ; k++){
+  printf("\n Iteracion =%i   Iteracion error=%i  diferencia =%.16f \n",t,k,diferencia);  
+  calculo_presion();
+  }
+  
+  
   calcular_presion_w();
   calcular_presion_n();
   calcular_lambda_n_1_2_3_4();
@@ -107,14 +122,16 @@ int main(void){
   calcular_f_w();
   
   calculo_saturacion();
+  
+  guardar(saturacion);  
   }
   
-  guardar(saturacion);
+  //guardar(saturacion);
   
   
   
   
-  printf("\n \n \n Delta_T = %.15f    Tiempo Total=%.15f\n \n",delta_t,delta_t*1000);
+  printf("\n \n \n Delta_T = %.15f    Tiempo Total=%.15f\n \n",delta_t,tiempo_total);
   printf("\n \n \n.... FIN ....\n \n");
   
   return 0;

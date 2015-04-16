@@ -8,8 +8,8 @@
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
 /* Definicion de parametros globales                                             */
-#define TAM_C 80
-#define TAM_F 80
+#define TAM_C 200
+#define TAM_F 200
 #define CB 1   // 0 para una condicion de borde tipo canal y 1 para una tipo FQS
 
 #define mu_w 1
@@ -121,6 +121,7 @@ void calcular_U_n_1_2_3_4();
 void calcular_U_w_1_2_3_4();
 void calcular_U_t_1_2_3_4();
 void calcular_f_w();
+void delta_tiempo();
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
 /*  Funciones del archivo calculo_presion.c                                      */
