@@ -8,7 +8,7 @@ int main(void){
   printf("\n.... Programa full V 2.0 ....\n");
   int t=0;
   double tiempo_total=0.0;
-  int iteraciones=12000;
+  int iteraciones=10;
   
   presion=malloc(sizeof(double)*TAM_C*TAM_F);
   presion_N=malloc(sizeof(double)*TAM_C*TAM_F);
@@ -96,7 +96,7 @@ int main(void){
   calcular_presion_capilar();
   calcular_termino_presion_capilar();
   
-  diferencia=0.001;
+  diferencia=0.0001;
   if(t==0){
   while(diferencia>error){
   //for(t=0 ; t<1 ; t++){
@@ -106,7 +106,7 @@ int main(void){
   }
   
   int k=0;
-  for(k=0 ; k<10000 ; k++){
+  for(k=0 ; k<8000 ; k++){
   printf("\n Iteracion =%i   Iteracion error=%i  diferencia =%.16f \n",t,k,diferencia);  
   calculo_presion();
   }

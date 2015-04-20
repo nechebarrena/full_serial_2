@@ -20,7 +20,7 @@
 #define po 0.0
 
 #define cachito 0.0000000001
-#define error 0.000000001
+#define error 0.00000000001
 
 #define courant 0.1
 
