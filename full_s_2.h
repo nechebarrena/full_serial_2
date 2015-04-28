@@ -8,19 +8,19 @@
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
 /* Definicion de parametros globales                                             */
-#define TAM_C 200
-#define TAM_F 200
+#define TAM_C 100
+#define TAM_F 100
 #define CB 1   // 0 para una condicion de borde tipo canal y 1 para una tipo FQS
 
-#define mu_w 1
-#define mu_n 50
+#define mu_w 1.0
+#define mu_n 50.0
 
-#define q_n 0.01
-#define q_w 0.01
+#define q_n 0.1
+#define q_w 0.1
 #define po 0.0
 
 #define cachito 0.0000000001
-#define error 0.00000000001
+#define error 0.000000001
 
 #define courant 0.1
 
@@ -96,7 +96,8 @@ double delta_t;
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
 /* Funciones del archivo funciones_s_2.c                                         */
-void guardar(double *matriz);
+void guardar_1(double *matriz);
+void guardar_2(double *matriz);
 void inicializar_presion();
 void inicializar_saturacion();
 void inicializar_K();

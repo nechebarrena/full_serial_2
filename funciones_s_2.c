@@ -1,10 +1,29 @@
 #include "full_s_2.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void guardar(double *matriz){    // la funcion guardar graba los datos de matriz en un archivo llamado salia-1.dat
+void guardar_1(double *matriz){    // la funcion guardar graba los datos de matriz en un archivo llamado salia-1.dat
   
   FILE *archivo;   // creo el archivo
   archivo= fopen("salida-1.dat","w+"); //abro el archivo y le asigno el nombre
+  int f=0; 
+  int c=0;
+  
+  for(f=0 ; f<TAM_F ; f++){ //barro todas las filas de la matriz
+    for(c=0 ; c<TAM_C ; c++){ //barro todas las columnas de la matriz
+      fprintf(archivo,"%.15f\n",matriz[TAM_C*f + c]); //guardo un dato y le doy enter
+    }
+      fprintf(archivo,"\n"); //cuando termino una fila le doy un enter
+  }
+  
+  
+  fclose(archivo); //cierro el archivo
+}
+// El formato con el que guardo los datos es [ fila_i -renglon vacio- fila_i+1 -renglon vacio- fila_i+2 ..... ]   
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void guardar_2(double *matriz){    // la funcion guardar graba los datos de matriz en un archivo llamado salia-1.dat
+  
+  FILE *archivo;   // creo el archivo
+  archivo= fopen("salida-2.dat","w+"); //abro el archivo y le asigno el nombre
   int f=0; 
   int c=0;
   
@@ -127,7 +146,7 @@ void inicializar_saturacion(){
   
   int c=0;
   int f=0;
-  double alfa=400;
+  double alfa=40;
   for(f=0 ; f<TAM_F ; f++){
     for(c=0 ; c<TAM_C ; c++){
       saturacion[TAM_C*f + c]= 0.0 ; 
@@ -683,10 +702,10 @@ void calcular_U_w_1_2_3_4(){
   
   for(f=1 ; f<(TAM_F-1) ; f++){
     for(c=1 ; c<(TAM_C-1) ; c++){
-      U_w_1[TAM_C*f + c]= -1.0*(lambda_d_1[TAM_C*f + c])*( presion_w[TAM_C*f + (c-1)] - presion_w[TAM_C*f + c]  );
-      U_w_2[TAM_C*f + c]= -1.0*(lambda_d_2[TAM_C*f + c])*( presion_w[TAM_C*f + (c+1)] - presion_w[TAM_C*f + c]  );
-      U_w_3[TAM_C*f + c]= -1.0*(lambda_d_3[TAM_C*f + c])*( presion_w[TAM_C*(f-1) + c] - presion_w[TAM_C*f + c]  );
-      U_w_4[TAM_C*f + c]= -1.0*(lambda_d_4[TAM_C*f + c])*( presion_w[TAM_C*(f+1) + c] - presion_w[TAM_C*f + c]  );
+      U_w_1[TAM_C*f + c]= -1.0*(lambda_w_1[TAM_C*f + c])*( presion_w[TAM_C*f + (c-1)] - presion_w[TAM_C*f + c]  );
+      U_w_2[TAM_C*f + c]= -1.0*(lambda_w_2[TAM_C*f + c])*( presion_w[TAM_C*f + (c+1)] - presion_w[TAM_C*f + c]  );
+      U_w_3[TAM_C*f + c]= -1.0*(lambda_w_3[TAM_C*f + c])*( presion_w[TAM_C*(f-1) + c] - presion_w[TAM_C*f + c]  );
+      U_w_4[TAM_C*f + c]= -1.0*(lambda_w_4[TAM_C*f + c])*( presion_w[TAM_C*(f+1) + c] - presion_w[TAM_C*f + c]  );
     }
   }
  
@@ -694,10 +713,10 @@ void calcular_U_w_1_2_3_4(){
 /* Borde izquierdo   c=0 */ 
  for(f=1 ; f<(TAM_F-1) ; f++){
     c=0;
-      U_w_1[TAM_C*f + c]=0.0;// -1.0*(lambda_d_1[TAM_C*f + c])*( presion_w[TAM_C*f + (c-1)] - presion_w[TAM_C*f + c]  );
-      U_w_2[TAM_C*f + c]= -1.0*(lambda_d_2[TAM_C*f + c])*( presion_w[TAM_C*f + (c+1)] - presion_w[TAM_C*f + c]  );
-      U_w_3[TAM_C*f + c]= -1.0*(lambda_d_3[TAM_C*f + c])*( presion_w[TAM_C*(f-1) + c] - presion_w[TAM_C*f + c]  );
-      U_w_4[TAM_C*f + c]= -1.0*(lambda_d_4[TAM_C*f + c])*( presion_w[TAM_C*(f+1) + c] - presion_w[TAM_C*f + c]  );
+      U_w_1[TAM_C*f + c]=0.0;// -1.0*(lambda_w_1[TAM_C*f + c])*( presion_w[TAM_C*f + (c-1)] - presion_w[TAM_C*f + c]  );
+      U_w_2[TAM_C*f + c]= -1.0*(lambda_w_2[TAM_C*f + c])*( presion_w[TAM_C*f + (c+1)] - presion_w[TAM_C*f + c]  );
+      U_w_3[TAM_C*f + c]= -1.0*(lambda_w_3[TAM_C*f + c])*( presion_w[TAM_C*(f-1) + c] - presion_w[TAM_C*f + c]  );
+      U_w_4[TAM_C*f + c]= -1.0*(lambda_w_4[TAM_C*f + c])*( presion_w[TAM_C*(f+1) + c] - presion_w[TAM_C*f + c]  );
  
   }
   
@@ -706,10 +725,10 @@ void calcular_U_w_1_2_3_4(){
 
 for(f=1 ; f<(TAM_F-1) ; f++){
     c=TAM_C -1 ;
-      U_w_1[TAM_C*f + c]= -1.0*(lambda_d_1[TAM_C*f + c])*( presion_w[TAM_C*f + (c-1)] - presion_w[TAM_C*f + c]  );
-      U_w_2[TAM_C*f + c]=0.0;// -1.0*(lambda_d_2[TAM_C*f + c])*( presion_w[TAM_C*f + (c+1)] - presion_w[TAM_C*f + c]  );
-      U_w_3[TAM_C*f + c]= -1.0*(lambda_d_3[TAM_C*f + c])*( presion_w[TAM_C*(f-1) + c] - presion_w[TAM_C*f + c]  );
-      U_w_4[TAM_C*f + c]= -1.0*(lambda_d_4[TAM_C*f + c])*( presion_w[TAM_C*(f+1) + c] - presion_w[TAM_C*f + c]  );
+      U_w_1[TAM_C*f + c]= -1.0*(lambda_w_1[TAM_C*f + c])*( presion_w[TAM_C*f + (c-1)] - presion_w[TAM_C*f + c]  );
+      U_w_2[TAM_C*f + c]=0.0;// -1.0*(lambda_w_2[TAM_C*f + c])*( presion_w[TAM_C*f + (c+1)] - presion_w[TAM_C*f + c]  );
+      U_w_3[TAM_C*f + c]= -1.0*(lambda_w_3[TAM_C*f + c])*( presion_w[TAM_C*(f-1) + c] - presion_w[TAM_C*f + c]  );
+      U_w_4[TAM_C*f + c]= -1.0*(lambda_w_4[TAM_C*f + c])*( presion_w[TAM_C*(f+1) + c] - presion_w[TAM_C*f + c]  );
 
   }
  
@@ -718,10 +737,10 @@ for(f=1 ; f<(TAM_F-1) ; f++){
  
     for(c=1 ; c<(TAM_C-1) ; c++){
       f=0;
-      U_w_1[TAM_C*f + c]= -1.0*(lambda_d_1[TAM_C*f + c])*( presion_w[TAM_C*f + (c-1)] - presion_w[TAM_C*f + c]  );
-      U_w_2[TAM_C*f + c]= -1.0*(lambda_d_2[TAM_C*f + c])*( presion_w[TAM_C*f + (c+1)] - presion_w[TAM_C*f + c]  );
-      U_w_3[TAM_C*f + c]=0.0;// -1.0*(lambda_d_3[TAM_C*f + c])*( presion_w[TAM_C*(f-1) + c] - presion_w[TAM_C*f + c]  );
-      U_w_4[TAM_C*f + c]= -1.0*(lambda_d_4[TAM_C*f + c])*( presion_w[TAM_C*(f+1) + c] - presion_w[TAM_C*f + c]  );
+      U_w_1[TAM_C*f + c]= -1.0*(lambda_w_1[TAM_C*f + c])*( presion_w[TAM_C*f + (c-1)] - presion_w[TAM_C*f + c]  );
+      U_w_2[TAM_C*f + c]= -1.0*(lambda_w_2[TAM_C*f + c])*( presion_w[TAM_C*f + (c+1)] - presion_w[TAM_C*f + c]  );
+      U_w_3[TAM_C*f + c]=0.0;// -1.0*(lambda_w_3[TAM_C*f + c])*( presion_w[TAM_C*(f-1) + c] - presion_w[TAM_C*f + c]  );
+      U_w_4[TAM_C*f + c]= -1.0*(lambda_w_4[TAM_C*f + c])*( presion_w[TAM_C*(f+1) + c] - presion_w[TAM_C*f + c]  );
     }
   
 /* Borde inferior f=TAM_F -1*/
@@ -729,10 +748,10 @@ for(f=1 ; f<(TAM_F-1) ; f++){
 
     for(c=1 ; c<(TAM_C-1) ; c++){
       f=TAM_F -1 ;
-      U_w_1[TAM_C*f + c]= -1.0*(lambda_d_1[TAM_C*f + c])*( presion_w[TAM_C*f + (c-1)] - presion_w[TAM_C*f + c]  );
-      U_w_2[TAM_C*f + c]= -1.0*(lambda_d_2[TAM_C*f + c])*( presion_w[TAM_C*f + (c+1)] - presion_w[TAM_C*f + c]  );
-      U_w_3[TAM_C*f + c]= -1.0*(lambda_d_3[TAM_C*f + c])*( presion_w[TAM_C*(f-1) + c] - presion_w[TAM_C*f + c]  );
-      U_w_4[TAM_C*f + c]= 0.0;//-1.0*(lambda_d_4[TAM_C*f + c])*( presion_w[TAM_C*(f+1) + c] - presion_w[TAM_C*f + c]  );
+      U_w_1[TAM_C*f + c]= -1.0*(lambda_w_1[TAM_C*f + c])*( presion_w[TAM_C*f + (c-1)] - presion_w[TAM_C*f + c]  );
+      U_w_2[TAM_C*f + c]= -1.0*(lambda_w_2[TAM_C*f + c])*( presion_w[TAM_C*f + (c+1)] - presion_w[TAM_C*f + c]  );
+      U_w_3[TAM_C*f + c]= -1.0*(lambda_w_3[TAM_C*f + c])*( presion_w[TAM_C*(f-1) + c] - presion_w[TAM_C*f + c]  );
+      U_w_4[TAM_C*f + c]= 0.0;//-1.0*(lambda_w_4[TAM_C*f + c])*( presion_w[TAM_C*(f+1) + c] - presion_w[TAM_C*f + c]  );
     }
   
 
@@ -740,38 +759,38 @@ for(f=1 ; f<(TAM_F-1) ; f++){
  
  c=0;
  f=0;
- U_w_1[TAM_C*f + c]=0.0;// -1.0*(lambda_d_1[TAM_C*f + c])*( presion_w[TAM_C*f + (c-1)] - presion_w[TAM_C*f + c]  );
- U_w_2[TAM_C*f + c]= -1.0*(lambda_d_2[TAM_C*f + c])*( presion_w[TAM_C*f + (c+1)] - presion_w[TAM_C*f + c]  );
- U_w_3[TAM_C*f + c]=0.0;// -1.0*(lambda_d_3[TAM_C*f + c])*( presion_w[TAM_C*(f-1) + c] - presion_w[TAM_C*f + c]  );
- U_w_4[TAM_C*f + c]= -1.0*(lambda_d_4[TAM_C*f + c])*( presion_w[TAM_C*(f+1) + c] - presion_w[TAM_C*f + c]  );
+ U_w_1[TAM_C*f + c]=0.0;// -1.0*(lambda_w_1[TAM_C*f + c])*( presion_w[TAM_C*f + (c-1)] - presion_w[TAM_C*f + c]  );
+ U_w_2[TAM_C*f + c]= -1.0*(lambda_w_2[TAM_C*f + c])*( presion_w[TAM_C*f + (c+1)] - presion_w[TAM_C*f + c]  );
+ U_w_3[TAM_C*f + c]=0.0;// -1.0*(lambda_w_3[TAM_C*f + c])*( presion_w[TAM_C*(f-1) + c] - presion_w[TAM_C*f + c]  );
+ U_w_4[TAM_C*f + c]= -1.0*(lambda_w_4[TAM_C*f + c])*( presion_w[TAM_C*(f+1) + c] - presion_w[TAM_C*f + c]  );
 
 /* esquina superior derecha c= TAM_C -1 f=0*/ 
  
  c=TAM_C -1;
  f=0;
-U_w_1[TAM_C*f + c]= -1.0*(lambda_d_1[TAM_C*f + c])*( presion_w[TAM_C*f + (c-1)] - presion_w[TAM_C*f + c]  );
-U_w_2[TAM_C*f + c]=0.0;// -1.0*(lambda_d_2[TAM_C*f + c])*( presion_w[TAM_C*f + (c+1)] - presion_w[TAM_C*f + c]  );
-U_w_3[TAM_C*f + c]=0.0;// -1.0*(lambda_d_3[TAM_C*f + c])*( presion_w[TAM_C*(f-1) + c] - presion_w[TAM_C*f + c]  );
-U_w_4[TAM_C*f + c]= -1.0*(lambda_d_4[TAM_C*f + c])*( presion_w[TAM_C*(f+1) + c] - presion_w[TAM_C*f + c]  );
+U_w_1[TAM_C*f + c]= -1.0*(lambda_w_1[TAM_C*f + c])*( presion_w[TAM_C*f + (c-1)] - presion_w[TAM_C*f + c]  );
+U_w_2[TAM_C*f + c]=0.0;// -1.0*(lambda_w_2[TAM_C*f + c])*( presion_w[TAM_C*f + (c+1)] - presion_w[TAM_C*f + c]  );
+U_w_3[TAM_C*f + c]=0.0;// -1.0*(lambda_w_3[TAM_C*f + c])*( presion_w[TAM_C*(f-1) + c] - presion_w[TAM_C*f + c]  );
+U_w_4[TAM_C*f + c]= -1.0*(lambda_w_4[TAM_C*f + c])*( presion_w[TAM_C*(f+1) + c] - presion_w[TAM_C*f + c]  );
 
  
 /* esquina inferior izquierda  c=0  f=TAM_F -1*/ 
  
  c=0;
  f=TAM_F -1;
- U_w_1[TAM_C*f + c]=0.0;// -1.0*(lambda_d_1[TAM_C*f + c])*( presion_w[TAM_C*f + (c-1)] - presion_w[TAM_C*f + c]  );
- U_w_2[TAM_C*f + c]= -1.0*(lambda_d_2[TAM_C*f + c])*( presion_w[TAM_C*f + (c+1)] - presion_w[TAM_C*f + c]  );
- U_w_3[TAM_C*f + c]= -1.0*(lambda_d_3[TAM_C*f + c])*( presion_w[TAM_C*(f-1) + c] - presion_w[TAM_C*f + c]  );
- U_w_4[TAM_C*f + c]=0.0;// -1.0*(lambda_d_4[TAM_C*f + c])*( presion_w[TAM_C*(f+1) + c] - presion_w[TAM_C*f + c]  );
+ U_w_1[TAM_C*f + c]=0.0;// -1.0*(lambda_w_1[TAM_C*f + c])*( presion_w[TAM_C*f + (c-1)] - presion_w[TAM_C*f + c]  );
+ U_w_2[TAM_C*f + c]= -1.0*(lambda_w_2[TAM_C*f + c])*( presion_w[TAM_C*f + (c+1)] - presion_w[TAM_C*f + c]  );
+ U_w_3[TAM_C*f + c]= -1.0*(lambda_w_3[TAM_C*f + c])*( presion_w[TAM_C*(f-1) + c] - presion_w[TAM_C*f + c]  );
+ U_w_4[TAM_C*f + c]=0.0;// -1.0*(lambda_w_4[TAM_C*f + c])*( presion_w[TAM_C*(f+1) + c] - presion_w[TAM_C*f + c]  );
 
  
 /* esquina inferior derecha c=TAM_C -1  f= TAM_F -1*/ 
  c=TAM_C -1;
  f=TAM_F -1;
- U_w_1[TAM_C*f + c]= -1.0*(lambda_d_1[TAM_C*f + c])*( presion_w[TAM_C*f + (c-1)] - presion_w[TAM_C*f + c]  );
- U_w_2[TAM_C*f + c]=0.0;// -1.0*(lambda_d_2[TAM_C*f + c])*( presion_w[TAM_C*f + (c+1)] - presion_w[TAM_C*f + c]  );
- U_w_3[TAM_C*f + c]= -1.0*(lambda_d_3[TAM_C*f + c])*( presion_w[TAM_C*(f-1) + c] - presion_w[TAM_C*f + c]  );
- U_w_4[TAM_C*f + c]=0.0;// -1.0*(lambda_d_4[TAM_C*f + c])*( presion_w[TAM_C*(f+1) + c] - presion_w[TAM_C*f + c]  );
+ U_w_1[TAM_C*f + c]= -1.0*(lambda_w_1[TAM_C*f + c])*( presion_w[TAM_C*f + (c-1)] - presion_w[TAM_C*f + c]  );
+ U_w_2[TAM_C*f + c]=0.0;// -1.0*(lambda_w_2[TAM_C*f + c])*( presion_w[TAM_C*f + (c+1)] - presion_w[TAM_C*f + c]  );
+ U_w_3[TAM_C*f + c]= -1.0*(lambda_w_3[TAM_C*f + c])*( presion_w[TAM_C*(f-1) + c] - presion_w[TAM_C*f + c]  );
+ U_w_4[TAM_C*f + c]=0.0;// -1.0*(lambda_w_4[TAM_C*f + c])*( presion_w[TAM_C*(f+1) + c] - presion_w[TAM_C*f + c]  );
 
   
 }
@@ -785,10 +804,10 @@ void calcular_U_n_1_2_3_4(){
   
   for(f=1 ; f<(TAM_F-1) ; f++){
     for(c=1 ; c<(TAM_C-1) ; c++){
-      U_n_1[TAM_C*f + c]= -1.0*(lambda_d_1[TAM_C*f + c])*( presion_n[TAM_C*f + (c-1)] - presion_n[TAM_C*f + c]  );
-      U_n_2[TAM_C*f + c]= -1.0*(lambda_d_2[TAM_C*f + c])*( presion_n[TAM_C*f + (c+1)] - presion_n[TAM_C*f + c]  );
-      U_n_3[TAM_C*f + c]= -1.0*(lambda_d_3[TAM_C*f + c])*( presion_n[TAM_C*(f-1) + c] - presion_n[TAM_C*f + c]  );
-      U_n_4[TAM_C*f + c]= -1.0*(lambda_d_4[TAM_C*f + c])*( presion_n[TAM_C*(f+1) + c] - presion_n[TAM_C*f + c]  );
+      U_n_1[TAM_C*f + c]= -1.0*(lambda_n_1[TAM_C*f + c])*( presion_n[TAM_C*f + (c-1)] - presion_n[TAM_C*f + c]  );
+      U_n_2[TAM_C*f + c]= -1.0*(lambda_n_2[TAM_C*f + c])*( presion_n[TAM_C*f + (c+1)] - presion_n[TAM_C*f + c]  );
+      U_n_3[TAM_C*f + c]= -1.0*(lambda_n_3[TAM_C*f + c])*( presion_n[TAM_C*(f-1) + c] - presion_n[TAM_C*f + c]  );
+      U_n_4[TAM_C*f + c]= -1.0*(lambda_n_4[TAM_C*f + c])*( presion_n[TAM_C*(f+1) + c] - presion_n[TAM_C*f + c]  );
     }
   }
  
@@ -796,10 +815,10 @@ void calcular_U_n_1_2_3_4(){
 /* Borde izquierdo   c=0 */ 
  for(f=1 ; f<(TAM_F-1) ; f++){
     c=0;
-      U_n_1[TAM_C*f + c]=0.0;// -1.0*(lambda_d_1[TAM_C*f + c])*( presion_n[TAM_C*f + (c-1)] - presion_n[TAM_C*f + c]  );
-      U_n_2[TAM_C*f + c]= -1.0*(lambda_d_2[TAM_C*f + c])*( presion_n[TAM_C*f + (c+1)] - presion_n[TAM_C*f + c]  );
-      U_n_3[TAM_C*f + c]= -1.0*(lambda_d_3[TAM_C*f + c])*( presion_n[TAM_C*(f-1) + c] - presion_n[TAM_C*f + c]  );
-      U_n_4[TAM_C*f + c]= -1.0*(lambda_d_4[TAM_C*f + c])*( presion_n[TAM_C*(f+1) + c] - presion_n[TAM_C*f + c]  );
+      U_n_1[TAM_C*f + c]=0.0;// -1.0*(lambda_n_1[TAM_C*f + c])*( presion_n[TAM_C*f + (c-1)] - presion_n[TAM_C*f + c]  );
+      U_n_2[TAM_C*f + c]= -1.0*(lambda_n_2[TAM_C*f + c])*( presion_n[TAM_C*f + (c+1)] - presion_n[TAM_C*f + c]  );
+      U_n_3[TAM_C*f + c]= -1.0*(lambda_n_3[TAM_C*f + c])*( presion_n[TAM_C*(f-1) + c] - presion_n[TAM_C*f + c]  );
+      U_n_4[TAM_C*f + c]= -1.0*(lambda_n_4[TAM_C*f + c])*( presion_n[TAM_C*(f+1) + c] - presion_n[TAM_C*f + c]  );
  
   }
   
@@ -808,10 +827,10 @@ void calcular_U_n_1_2_3_4(){
 
 for(f=1 ; f<(TAM_F-1) ; f++){
     c=TAM_C -1 ;
-      U_n_1[TAM_C*f + c]= -1.0*(lambda_d_1[TAM_C*f + c])*( presion_n[TAM_C*f + (c-1)] - presion_n[TAM_C*f + c]  );
-      U_n_2[TAM_C*f + c]=0.0;// -1.0*(lambda_d_2[TAM_C*f + c])*( presion_n[TAM_C*f + (c+1)] - presion_n[TAM_C*f + c]  );
-      U_n_3[TAM_C*f + c]= -1.0*(lambda_d_3[TAM_C*f + c])*( presion_n[TAM_C*(f-1) + c] - presion_n[TAM_C*f + c]  );
-      U_n_4[TAM_C*f + c]= -1.0*(lambda_d_4[TAM_C*f + c])*( presion_n[TAM_C*(f+1) + c] - presion_n[TAM_C*f + c]  );
+      U_n_1[TAM_C*f + c]= -1.0*(lambda_n_1[TAM_C*f + c])*( presion_n[TAM_C*f + (c-1)] - presion_n[TAM_C*f + c]  );
+      U_n_2[TAM_C*f + c]=0.0;// -1.0*(lambda_n_2[TAM_C*f + c])*( presion_n[TAM_C*f + (c+1)] - presion_n[TAM_C*f + c]  );
+      U_n_3[TAM_C*f + c]= -1.0*(lambda_n_3[TAM_C*f + c])*( presion_n[TAM_C*(f-1) + c] - presion_n[TAM_C*f + c]  );
+      U_n_4[TAM_C*f + c]= -1.0*(lambda_n_4[TAM_C*f + c])*( presion_n[TAM_C*(f+1) + c] - presion_n[TAM_C*f + c]  );
 
   }
  
@@ -820,10 +839,10 @@ for(f=1 ; f<(TAM_F-1) ; f++){
  
     for(c=1 ; c<(TAM_C-1) ; c++){
       f=0;
-      U_n_1[TAM_C*f + c]= -1.0*(lambda_d_1[TAM_C*f + c])*( presion_n[TAM_C*f + (c-1)] - presion_n[TAM_C*f + c]  );
-      U_n_2[TAM_C*f + c]= -1.0*(lambda_d_2[TAM_C*f + c])*( presion_n[TAM_C*f + (c+1)] - presion_n[TAM_C*f + c]  );
-      U_n_3[TAM_C*f + c]=0.0;// -1.0*(lambda_d_3[TAM_C*f + c])*( presion_n[TAM_C*(f-1) + c] - presion_n[TAM_C*f + c]  );
-      U_n_4[TAM_C*f + c]= -1.0*(lambda_d_4[TAM_C*f + c])*( presion_n[TAM_C*(f+1) + c] - presion_n[TAM_C*f + c]  );
+      U_n_1[TAM_C*f + c]= -1.0*(lambda_n_1[TAM_C*f + c])*( presion_n[TAM_C*f + (c-1)] - presion_n[TAM_C*f + c]  );
+      U_n_2[TAM_C*f + c]= -1.0*(lambda_n_2[TAM_C*f + c])*( presion_n[TAM_C*f + (c+1)] - presion_n[TAM_C*f + c]  );
+      U_n_3[TAM_C*f + c]=0.0;// -1.0*(lambda_n_3[TAM_C*f + c])*( presion_n[TAM_C*(f-1) + c] - presion_n[TAM_C*f + c]  );
+      U_n_4[TAM_C*f + c]= -1.0*(lambda_n_4[TAM_C*f + c])*( presion_n[TAM_C*(f+1) + c] - presion_n[TAM_C*f + c]  );
     }
   
 /* Borde inferior f=TAM_F -1*/
@@ -831,10 +850,10 @@ for(f=1 ; f<(TAM_F-1) ; f++){
 
     for(c=1 ; c<(TAM_C-1) ; c++){
       f=TAM_F -1 ;
-      U_n_1[TAM_C*f + c]= -1.0*(lambda_d_1[TAM_C*f + c])*( presion_n[TAM_C*f + (c-1)] - presion_n[TAM_C*f + c]  );
-      U_n_2[TAM_C*f + c]= -1.0*(lambda_d_2[TAM_C*f + c])*( presion_n[TAM_C*f + (c+1)] - presion_n[TAM_C*f + c]  );
-      U_n_3[TAM_C*f + c]= -1.0*(lambda_d_3[TAM_C*f + c])*( presion_n[TAM_C*(f-1) + c] - presion_n[TAM_C*f + c]  );
-      U_n_4[TAM_C*f + c]= 0.0;//-1.0*(lambda_d_4[TAM_C*f + c])*( presion_n[TAM_C*(f+1) + c] - presion_n[TAM_C*f + c]  );
+      U_n_1[TAM_C*f + c]= -1.0*(lambda_n_1[TAM_C*f + c])*( presion_n[TAM_C*f + (c-1)] - presion_n[TAM_C*f + c]  );
+      U_n_2[TAM_C*f + c]= -1.0*(lambda_n_2[TAM_C*f + c])*( presion_n[TAM_C*f + (c+1)] - presion_n[TAM_C*f + c]  );
+      U_n_3[TAM_C*f + c]= -1.0*(lambda_n_3[TAM_C*f + c])*( presion_n[TAM_C*(f-1) + c] - presion_n[TAM_C*f + c]  );
+      U_n_4[TAM_C*f + c]= 0.0;//-1.0*(lambda_n_4[TAM_C*f + c])*( presion_n[TAM_C*(f+1) + c] - presion_n[TAM_C*f + c]  );
     }
   
 
@@ -842,38 +861,38 @@ for(f=1 ; f<(TAM_F-1) ; f++){
  
  c=0;
  f=0;
- U_n_1[TAM_C*f + c]=0.0;// -1.0*(lambda_d_1[TAM_C*f + c])*( presion_n[TAM_C*f + (c-1)] - presion_n[TAM_C*f + c]  );
- U_n_2[TAM_C*f + c]= -1.0*(lambda_d_2[TAM_C*f + c])*( presion_n[TAM_C*f + (c+1)] - presion_n[TAM_C*f + c]  );
- U_n_3[TAM_C*f + c]=0.0;// -1.0*(lambda_d_3[TAM_C*f + c])*( presion_n[TAM_C*(f-1) + c] - presion_n[TAM_C*f + c]  );
- U_n_4[TAM_C*f + c]= -1.0*(lambda_d_4[TAM_C*f + c])*( presion_n[TAM_C*(f+1) + c] - presion_n[TAM_C*f + c]  );
+ U_n_1[TAM_C*f + c]=0.0;// -1.0*(lambda_n_1[TAM_C*f + c])*( presion_n[TAM_C*f + (c-1)] - presion_n[TAM_C*f + c]  );
+ U_n_2[TAM_C*f + c]= -1.0*(lambda_n_2[TAM_C*f + c])*( presion_n[TAM_C*f + (c+1)] - presion_n[TAM_C*f + c]  );
+ U_n_3[TAM_C*f + c]=0.0;// -1.0*(lambda_n_3[TAM_C*f + c])*( presion_n[TAM_C*(f-1) + c] - presion_n[TAM_C*f + c]  );
+ U_n_4[TAM_C*f + c]= -1.0*(lambda_n_4[TAM_C*f + c])*( presion_n[TAM_C*(f+1) + c] - presion_n[TAM_C*f + c]  );
 
 /* esquina superior derecha c= TAM_C -1 f=0*/ 
  
  c=TAM_C -1;
  f=0;
-U_n_1[TAM_C*f + c]= -1.0*(lambda_d_1[TAM_C*f + c])*( presion_n[TAM_C*f + (c-1)] - presion_n[TAM_C*f + c]  );
-U_n_2[TAM_C*f + c]=0.0;// -1.0*(lambda_d_2[TAM_C*f + c])*( presion_n[TAM_C*f + (c+1)] - presion_n[TAM_C*f + c]  );
-U_n_3[TAM_C*f + c]=0.0;// -1.0*(lambda_d_3[TAM_C*f + c])*( presion_n[TAM_C*(f-1) + c] - presion_n[TAM_C*f + c]  );
-U_n_4[TAM_C*f + c]= -1.0*(lambda_d_4[TAM_C*f + c])*( presion_n[TAM_C*(f+1) + c] - presion_n[TAM_C*f + c]  );
+U_n_1[TAM_C*f + c]= -1.0*(lambda_n_1[TAM_C*f + c])*( presion_n[TAM_C*f + (c-1)] - presion_n[TAM_C*f + c]  );
+U_n_2[TAM_C*f + c]=0.0;// -1.0*(lambda_n_2[TAM_C*f + c])*( presion_n[TAM_C*f + (c+1)] - presion_n[TAM_C*f + c]  );
+U_n_3[TAM_C*f + c]=0.0;// -1.0*(lambda_n_3[TAM_C*f + c])*( presion_n[TAM_C*(f-1) + c] - presion_n[TAM_C*f + c]  );
+U_n_4[TAM_C*f + c]= -1.0*(lambda_n_4[TAM_C*f + c])*( presion_n[TAM_C*(f+1) + c] - presion_n[TAM_C*f + c]  );
 
  
 /* esquina inferior izquierda  c=0  f=TAM_F -1*/ 
  
  c=0;
  f=TAM_F -1;
- U_n_1[TAM_C*f + c]=0.0;// -1.0*(lambda_d_1[TAM_C*f + c])*( presion_n[TAM_C*f + (c-1)] - presion_n[TAM_C*f + c]  );
- U_n_2[TAM_C*f + c]= -1.0*(lambda_d_2[TAM_C*f + c])*( presion_n[TAM_C*f + (c+1)] - presion_n[TAM_C*f + c]  );
- U_n_3[TAM_C*f + c]= -1.0*(lambda_d_3[TAM_C*f + c])*( presion_n[TAM_C*(f-1) + c] - presion_n[TAM_C*f + c]  );
- U_n_4[TAM_C*f + c]=0.0;// -1.0*(lambda_d_4[TAM_C*f + c])*( presion_n[TAM_C*(f+1) + c] - presion_n[TAM_C*f + c]  );
+ U_n_1[TAM_C*f + c]=0.0;// -1.0*(lambda_n_1[TAM_C*f + c])*( presion_n[TAM_C*f + (c-1)] - presion_n[TAM_C*f + c]  );
+ U_n_2[TAM_C*f + c]= -1.0*(lambda_n_2[TAM_C*f + c])*( presion_n[TAM_C*f + (c+1)] - presion_n[TAM_C*f + c]  );
+ U_n_3[TAM_C*f + c]= -1.0*(lambda_n_3[TAM_C*f + c])*( presion_n[TAM_C*(f-1) + c] - presion_n[TAM_C*f + c]  );
+ U_n_4[TAM_C*f + c]=0.0;// -1.0*(lambda_n_4[TAM_C*f + c])*( presion_n[TAM_C*(f+1) + c] - presion_n[TAM_C*f + c]  );
 
  
 /* esquina inferior derecha c=TAM_C -1  f= TAM_F -1*/ 
  c=TAM_C -1;
  f=TAM_F -1;
- U_n_1[TAM_C*f + c]= -1.0*(lambda_d_1[TAM_C*f + c])*( presion_n[TAM_C*f + (c-1)] - presion_n[TAM_C*f + c]  );
- U_n_2[TAM_C*f + c]=0.0;// -1.0*(lambda_d_2[TAM_C*f + c])*( presion_n[TAM_C*f + (c+1)] - presion_n[TAM_C*f + c]  );
- U_n_3[TAM_C*f + c]= -1.0*(lambda_d_3[TAM_C*f + c])*( presion_n[TAM_C*(f-1) + c] - presion_n[TAM_C*f + c]  );
- U_n_4[TAM_C*f + c]=0.0;// -1.0*(lambda_d_4[TAM_C*f + c])*( presion_n[TAM_C*(f+1) + c] - presion_n[TAM_C*f + c]  );
+ U_n_1[TAM_C*f + c]= -1.0*(lambda_n_1[TAM_C*f + c])*( presion_n[TAM_C*f + (c-1)] - presion_n[TAM_C*f + c]  );
+ U_n_2[TAM_C*f + c]=0.0;// -1.0*(lambda_n_2[TAM_C*f + c])*( presion_n[TAM_C*f + (c+1)] - presion_n[TAM_C*f + c]  );
+ U_n_3[TAM_C*f + c]= -1.0*(lambda_n_3[TAM_C*f + c])*( presion_n[TAM_C*(f-1) + c] - presion_n[TAM_C*f + c]  );
+ U_n_4[TAM_C*f + c]=0.0;// -1.0*(lambda_n_4[TAM_C*f + c])*( presion_n[TAM_C*(f+1) + c] - presion_n[TAM_C*f + c]  );
 
   
 }
@@ -885,13 +904,14 @@ void calcular_U_t_1_2_3_4(){
   
   for(f=0 ; f<TAM_F ; f++){
     for(c=0 ; c<TAM_C ; c++){
-      U_t_1[TAM_C*f + c]= -1.0*(U_n_1[TAM_C*f + c] + U_w_1[TAM_C*f + c]) ;
-      U_t_2[TAM_C*f + c]= -1.0*(U_n_2[TAM_C*f + c] + U_w_2[TAM_C*f + c]) ;
-      U_t_3[TAM_C*f + c]= -1.0*(U_n_3[TAM_C*f + c] + U_w_3[TAM_C*f + c]) ;
-      U_t_4[TAM_C*f + c]= -1.0*(U_n_4[TAM_C*f + c] + U_w_4[TAM_C*f + c]) ;
+      U_t_1[TAM_C*f + c]= 1.0*(U_n_1[TAM_C*f + c] + U_w_1[TAM_C*f + c]) ;
+      U_t_2[TAM_C*f + c]= 1.0*(U_n_2[TAM_C*f + c] + U_w_2[TAM_C*f + c]) ;
+      U_t_3[TAM_C*f + c]= 1.0*(U_n_3[TAM_C*f + c] + U_w_3[TAM_C*f + c]) ;
+      U_t_4[TAM_C*f + c]= 1.0*(U_n_4[TAM_C*f + c] + U_w_4[TAM_C*f + c]) ;
     }
   }
   
+  //printf(" \n U_t_1 = %f    U_t_2 = %f    U_t_3 = %f    U_t_4 = %f",U_t_1[TAM_C*0 + 0],U_t_2[TAM_C*0 + 0],U_t_3[TAM_C*0 + 0],U_t_4[TAM_C*0 + 0]);
   
   
 }

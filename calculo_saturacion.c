@@ -390,7 +390,7 @@ void esquina_superior_izquierda_s(){
       gama= f_w_1*lambda_n_1[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] + f_w_2*lambda_n_2[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] + f_w_3*lambda_n_3[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)]
       + f_w_4*lambda_n_4[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] ;
 
-      saturacion_N[TAM_C*f + (c)] = saturacion[TAM_C*f + (c)] + 1.0*courant*( -1.0*epsilon -1.0*gama + 4.0*Q_W[TAM_C*f + (c)]);  
+      saturacion_N[TAM_C*f + (c)] = saturacion[TAM_C*f + (c)] + 1.0*courant*( -1.0*epsilon -1.0*gama + Q_W[TAM_C*f + (c)]);  
       
       f_1= f_w_1*U_t_1[TAM_C*f + (c)] + f_w_1*lambda_n_1[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] ;
       f_2= f_w_2*U_t_2[TAM_C*f + (c)] + f_w_2*lambda_n_2[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] ;
@@ -398,8 +398,8 @@ void esquina_superior_izquierda_s(){
       f_4= f_w_4*U_t_4[TAM_C*f + (c)] + f_w_4*lambda_n_4[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] ;
       
       /*
-      printf("\n FILA=%i   COLUMNA=%i  flujo 1 =%.10f   flujo 2 =%.10f  flujo 3=%.10f  flujo 4=%.10f  Q_W =%.10f \n",f,c,f_1,f_2,f_3,f_4,4.0*Q_W[TAM_C*f + (c)]);
-      printf("\n FILA=%i   COLUMNA=%i  flujo total = %.10f  epsilon=%.10f   gama=%.10f \n",f,c,1.0*courant*( -1.0*epsilon -1.0*gama + 4.0*Q_W[TAM_C*f + (c)]), -1.0*epsilon ,-1.0*gama);
+      printf("\n FILA=%i   COLUMNA=%i  flujo 1 =%.10f   flujo 2 =%.10f  flujo 3=%.10f  flujo 4=%.10f  Q_W =%.10f \n",f,c,f_1,f_2,f_3,f_4, Q_W[TAM_C*f + (c)]);
+      printf("\n FILA=%i   COLUMNA=%i  flujo total = %.10f  epsilon=%.10f   gama=%.10f \n",f,c,1.0*courant*( -1.0*epsilon -1.0*gama + Q_W[TAM_C*f + (c)]), -1.0*epsilon ,-1.0*gama);
       printf("\n U_t_2=%.10f \n",U_t_2[TAM_C*f + (c)]);
       */ 
   

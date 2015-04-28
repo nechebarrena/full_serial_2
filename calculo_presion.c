@@ -189,7 +189,7 @@ void esquina_superior_izquierda(){
       flujo_5 = termino_presion_capilar[TAM_C*f + c] + Q_W[TAM_C*f + c] + Q_N[TAM_C*f + c] ;
       suma_lambdas= lambda_t_1[TAM_C*f + c] + lambda_t_2[TAM_C*f + c] + lambda_t_3[TAM_C*f + c] + lambda_t_4[TAM_C*f + c] ;
       presion_N[TAM_C*f + c]= (flujo_1 + flujo_2 + flujo_3 +  flujo_4 + flujo_5)/(suma_lambdas);
-
+      //printf("\n Presion ==> flujo 2=%f      flujo 4=%f     flujo 5=%f\n",lambda_t_2[TAM_C*f + c]*(presion[TAM_C*f + (c+1)]-presion[TAM_C*f + (c)]),lambda_t_2[TAM_C*f + c]*(presion[TAM_C*(f+1) + (c)]-presion[TAM_C*f + (c)]),flujo_5);
 
   
 }

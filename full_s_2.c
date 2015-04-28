@@ -8,7 +8,7 @@ int main(void){
   printf("\n.... Programa full V 2.0 ....\n");
   int t=0;
   double tiempo_total=0.0;
-  int iteraciones=10;
+  int iteraciones=10000;
   
   presion=malloc(sizeof(double)*TAM_C*TAM_F);
   presion_N=malloc(sizeof(double)*TAM_C*TAM_F);
@@ -100,14 +100,16 @@ int main(void){
   if(t==0){
   while(diferencia>error){
   //for(t=0 ; t<1 ; t++){
-  printf("\n Iteracion =%i    diferencia =%.16f \n",t,diferencia);  
+  //printf("\n Iteracion =%i    diferencia =%.16f \n",t,diferencia);  
   calculo_presion();
+  
   }
   }
   
+  
   int k=0;
-  for(k=0 ; k<8000 ; k++){
-  printf("\n Iteracion =%i   Iteracion error=%i  diferencia =%.16f \n",t,k,diferencia);  
+  for(k=1 ; k<5000 ; k++){
+  //printf("\n Iteracion =%i   Iteracion error=%i  diferencia =%.16f \n",t,k,diferencia);  
   calculo_presion();
   }
   
@@ -123,7 +125,8 @@ int main(void){
   
   calculo_saturacion();
   
-  guardar(saturacion);  
+  guardar_1(saturacion);
+  guardar_2(presion);
   }
   
   //guardar(saturacion);
