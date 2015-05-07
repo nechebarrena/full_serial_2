@@ -15,14 +15,14 @@
 #define mu_w 1.0
 #define mu_n 50.0
 
-#define q_n 0.1
-#define q_w 0.1
+#define q_n 10000.0
+#define q_w 10000.0
 #define po 0.0
 
 #define cachito 0.0000000001
-#define error 0.000000001
+#define error 0.0000000001
 
-#define courant 0.1
+#define courant 0.5
 
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
@@ -93,6 +93,10 @@ double *f_w;
 
 double delta_t;
 
+double *velocidad;
+
+
+
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
 /* Funciones del archivo funciones_s_2.c                                         */
@@ -110,6 +114,9 @@ void calcular_krn();
 void calcular_lambda_t();
 void calcular_lambda_d();
 void calcular_lambda_t_1_2_3_4();
+
+void calcular_lambda_t_1_2_3_4_A();
+
 void calcular_lambda_d_1_2_3_4();
 void calcular_presion_capilar();
 void calcular_termino_presion_capilar();
@@ -123,6 +130,8 @@ void calcular_U_w_1_2_3_4();
 void calcular_U_t_1_2_3_4();
 void calcular_f_w();
 void delta_tiempo();
+
+void calculo_velocidad();
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
 /*  Funciones del archivo calculo_presion.c                                      */

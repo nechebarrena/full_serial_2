@@ -7,8 +7,9 @@ int main(void){
   
   printf("\n.... Programa full V 2.0 ....\n");
   int t=0;
+  int t_aux=0;
   double tiempo_total=0.0;
-  int iteraciones=10000;
+  int iteraciones=5;
   
   presion=malloc(sizeof(double)*TAM_C*TAM_F);
   presion_N=malloc(sizeof(double)*TAM_C*TAM_F);
@@ -74,6 +75,7 @@ int main(void){
   
   f_w=malloc(sizeof(double)*TAM_C*TAM_F);
   
+  velocidad=malloc(sizeof(double)*TAM_C*TAM_F);
   
   inicializar_presion();
   inicializar_saturacion();
@@ -84,35 +86,47 @@ int main(void){
   tiempo_total=delta_t*iteraciones;
   printf("\n \n \n Delta_T = %.15f    Tiempo Total=%.15f\n \n",delta_t,tiempo_total);
   
-  for(t=0 ; t< iteraciones ; t++){
-  printf("\n Iteracion = %i \n",t);
+  for(t=1 ; t<= iteraciones ; t++){
+  //printf("\n Iteracion = %i \n",t);
   calcular_lambda_w();
   calcular_lambda_n();
   calcular_lambda_t();
   calcular_lambda_d();
   
   calcular_lambda_d_1_2_3_4();
-  calcular_lambda_t_1_2_3_4();
+  calcular_lambda_t_1_2_3_4_A(); // Alternativa
   calcular_presion_capilar();
   calcular_termino_presion_capilar();
-  
+  t_aux=0;
   diferencia=0.0001;
-  if(t==0){
-  while(diferencia>error){
+  if(t==1){
+   while(diferencia>error){ 
+    calculo_presion();
+   t_aux = t_aux +1;
+   
+   }
+  }  
+  else {  
+  /*
+  while(diferencia>error && t_aux<5000 ){
   //for(t=0 ; t<1 ; t++){
   //printf("\n Iteracion =%i    diferencia =%.16f \n",t,diferencia);  
   calculo_presion();
-  
+  t_aux=t_aux + 1;
+   if(t_aux>60000 && t>1){
+    printf("\n Iteracion =%i    diferencia =%.16f  tiempo=%f/%f  [%f %%] \n",t_aux,diferencia,t*delta_t,tiempo_total,(t*delta_t*100)/(tiempo_total));  
+   }
   }
+  */
   }
   
-  
+  /*
   int k=0;
-  for(k=1 ; k<5000 ; k++){
+  for(k=1 ; k<1000 ; k++){
   //printf("\n Iteracion =%i   Iteracion error=%i  diferencia =%.16f \n",t,k,diferencia);  
   calculo_presion();
   }
-  
+  */
   
   calcular_presion_w();
   calcular_presion_n();
@@ -124,9 +138,11 @@ int main(void){
   calcular_f_w();
   
   calculo_saturacion();
+  calculo_velocidad();
   
   guardar_1(saturacion);
   guardar_2(presion);
+  printf("\n Tiempo= %f/%f [ %.3f %%]  iteraciones= %i \n",t*delta_t,tiempo_total,(t*delta_t*100)/(tiempo_total),t_aux);
   }
   
   //guardar(saturacion);
