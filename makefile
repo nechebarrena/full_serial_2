@@ -1,4 +1,4 @@
-lista = full_s_2.c funciones_s_2.c calculo_presion.c calculo_saturacion.c full_s_2.h
+lista = full_s_2.c funciones_s_2.c calculo_presion.c calculo_saturacion.c funciones_aux.c full_s_2.h
 all: $(lista)
 	gcc $(lista) -O3 -lm -o programa_s_2
 	#gcc $(lista) -O3 -lm -o programa_s_2

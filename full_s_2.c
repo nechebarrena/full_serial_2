@@ -9,7 +9,7 @@ int main(void){
   int t=0;
   int t_aux=0;
   double tiempo_total=0.0;
-  int iteraciones=5;
+  int iteraciones=100000000;
   
   presion=malloc(sizeof(double)*TAM_C*TAM_F);
   presion_N=malloc(sizeof(double)*TAM_C*TAM_F);
@@ -98,13 +98,16 @@ int main(void){
   calcular_presion_capilar();
   calcular_termino_presion_capilar();
   t_aux=0;
-  diferencia=0.0001;
+  diferencia=0.001;
   if(t==1){
-   while(diferencia>error){ 
-    calculo_presion();
+    
+   while(diferencia>error && t_aux<40000){ 
+    //calculo_presion();
+    calculo_laplace();
    t_aux = t_aux +1;
    
    }
+   
   }  
   else {  
   /*

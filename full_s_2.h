@@ -15,14 +15,15 @@
 #define mu_w 1.0
 #define mu_n 50.0
 
-#define q_n 10000.0
-#define q_w 10000.0
+#define q_n 0.0000001
+#define q_w 0.0000001
 #define po 0.0
 
 #define cachito 0.0000000001
-#define error 0.0000000001
+#define error 0.00000000001
 
 #define courant 0.5
+#define PI 1.0
 
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
@@ -160,3 +161,17 @@ void esquina_superior_derecha_s();
 void esquina_inferior_izquierda_s();
 void esquina_inferior_derecha_s();
 void copiar_s();
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+/* Funciones del archivo funciones_aux                                           */
+
+void    recinto_interno_l();
+void    borde_izquierdo_l();
+void    borde_derecho_l();
+void    borde_superior_l();
+void    borde_inferior_l();
+void    esquina_superior_izquierda_l();
+void    esquina_superior_derecha_l();
+void    esquina_inferior_izquierda_l();
+void    esquina_inferior_derecha_l();
+void    copiar_l();
