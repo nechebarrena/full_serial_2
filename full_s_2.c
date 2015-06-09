@@ -9,7 +9,7 @@ int main(void){
   int t=0;
   int t_aux=0;
   double tiempo_total=0.0;
-  int iteraciones=100000000;
+  int iteraciones=2;
   
   presion=malloc(sizeof(double)*TAM_C*TAM_F);
   presion_N=malloc(sizeof(double)*TAM_C*TAM_F);
@@ -77,6 +77,9 @@ int main(void){
   
   velocidad=malloc(sizeof(double)*TAM_C*TAM_F);
   
+  integral=malloc(sizeof(double));
+  integral_total=malloc(sizeof(double)*iteraciones);
+  
   inicializar_presion();
   inicializar_saturacion();
   inicializar_Q_N();
@@ -93,8 +96,12 @@ int main(void){
   calcular_lambda_t();
   calcular_lambda_d();
   
+  calcular_lambda_n_1_2_3_4();
+  calcular_lambda_w_1_2_3_4();
+  
   calcular_lambda_d_1_2_3_4();
   calcular_lambda_t_1_2_3_4_A(); // Alternativa
+
   calcular_presion_capilar();
   calcular_termino_presion_capilar();
   t_aux=0;
@@ -133,8 +140,26 @@ int main(void){
   
   calcular_presion_w();
   calcular_presion_n();
+  
+  
+  
+  
+  calcular_lambda_w();
+  calcular_lambda_n();
+  calcular_lambda_t();
+  calcular_lambda_d();
+  
   calcular_lambda_n_1_2_3_4();
   calcular_lambda_w_1_2_3_4();
+  
+  calcular_lambda_d_1_2_3_4();
+  calcular_lambda_t_1_2_3_4_A(); // Alternativa
+  
+  
+  
+  
+  
+
   calcular_U_w_1_2_3_4();
   calcular_U_n_1_2_3_4();
   calcular_U_t_1_2_3_4();
@@ -143,8 +168,11 @@ int main(void){
   calculo_saturacion();
   calculo_velocidad();
   
-  guardar_1(saturacion);
-  guardar_2(presion);
+  guardar_1(lambda_t_3);
+  guardar_2(lambda_t_4);
+  calculo_integral();
+  integral_total[t]=*integral;
+  guardar_v(integral_total,iteraciones);
   printf("\n Tiempo= %f/%f [ %.3f %%]  iteraciones= %i \n",t*delta_t,tiempo_total,(t*delta_t*100)/(tiempo_total),t_aux);
   }
   

@@ -1,5 +1,23 @@
 #include "full_s_2.h"
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void guardar_v(double *vector,int tam){    // la funcion guardar graba los datos de matriz en un archivo llamado salia-1.dat
+  
+  FILE *archivo;   // creo el archivo
+  archivo= fopen("salida-v.dat","w+"); //abro el archivo y le asigno el nombre
+   
+  int c=0;
+  
+  
+    for(c=1 ; c<=tam ; c++){ //barro todas las columnas de la matriz
+      fprintf(archivo,"%.15f\n",vector[c]); //guardo un dato y le doy enter
+    }
+    
+  
+  
+  
+  fclose(archivo); //cierro el archivo
+}
+// El formato con el que guardo los datos es [ fila_i -renglon vacio- fila_i+1 -renglon vacio- fila_i+2 ..... ]   
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void guardar_1(double *matriz){    // la funcion guardar graba los datos de matriz en un archivo llamado salia-1.dat
   
@@ -1054,15 +1072,33 @@ void calculo_velocidad(){
   
     for(f=0 ; f<(TAM_F-1) ; f++){
       for(c=0 ; c<(TAM_C-1) ; c++){
-	velocidad[TAM_C*f + c]= U_n_2[TAM_C*f + c]*U_n_4[TAM_C*f + c] ;
+	velocidad[TAM_C*f + c]= pow(U_t_2[TAM_C*f + c]*U_t_2[TAM_C*f + c] + U_t_4[TAM_C*f + c]*U_t_4[TAM_C*f + c],0.5)  ;
       }
     }
     
   
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+void calculo_integral(){
+  
+ 
+   int f=0;
+   int c=0;
+   *integral=0.0;
+  
+    for(f=0 ; f<(TAM_F-1) ; f++){
+      for(c=0 ; c<(TAM_C-1) ; c++){
+	*integral= *integral + saturacion[TAM_C*f + c]*(1.0/TAM_C)*(1.0/TAM_C)  ;
+      }
+    }
+    
+  
+  
+  
+  
+}
 
 
 

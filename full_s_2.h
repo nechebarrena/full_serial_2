@@ -13,17 +13,17 @@
 #define CB 1   // 0 para una condicion de borde tipo canal y 1 para una tipo FQS
 
 #define mu_w 1.0
-#define mu_n 50.0
+#define mu_n 1.0
 
-#define q_n 0.0000001
-#define q_w 0.0000001
+#define q_n 10.0
+#define q_w 10.0
 #define po 0.0
 
 #define cachito 0.0000000001
 #define error 0.00000000001
 
-#define courant 0.5
-#define PI 1.0
+#define courant 10.0
+#define PI 5.0
 
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
@@ -96,11 +96,15 @@ double delta_t;
 
 double *velocidad;
 
+double *integral;
+double *integral_total;
+
 
 
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
 /* Funciones del archivo funciones_s_2.c                                         */
+void guardar_v(double *vector,int tam);
 void guardar_1(double *matriz);
 void guardar_2(double *matriz);
 void inicializar_presion();
