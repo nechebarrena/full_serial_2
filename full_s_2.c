@@ -9,7 +9,7 @@ int main(void){
   int t=0;
   int t_aux=0;
   double tiempo_total=0.0;
-  int iteraciones=2;
+  int iteraciones=1000;
   
   presion=malloc(sizeof(double)*TAM_C*TAM_F);
   presion_N=malloc(sizeof(double)*TAM_C*TAM_F);
@@ -168,8 +168,8 @@ int main(void){
   calculo_saturacion();
   calculo_velocidad();
   
-  guardar_1(lambda_t_3);
-  guardar_2(lambda_t_4);
+  guardar_1(saturacion);
+  guardar_2(velocidad);
   calculo_integral();
   integral_total[t]=*integral;
   guardar_v(integral_total,iteraciones);
