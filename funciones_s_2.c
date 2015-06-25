@@ -205,7 +205,7 @@ void calcular_lambda_n(){
   calcular_krn();
   for(f=0 ; f<TAM_F ; f++){
     for(c=0 ; c<TAM_C ; c++){
-      lambda_n[TAM_C*f + c]= (K[TAM_C*f + c]*krn[TAM_C*f + c])/(mu_n) ; 
+      lambda_n[TAM_C*f + c]= ((K[TAM_C*f + c]*krn[TAM_C*f + c]))/(mu_n) ; 
     }
   }
 }
@@ -218,7 +218,7 @@ void calcular_lambda_w(){
   calcular_krw();
   for(f=0 ; f<TAM_F ; f++){
     for(c=0 ; c<TAM_C ; c++){
-      lambda_w[TAM_C*f + c]= (K[TAM_C*f + c]*krw[TAM_C*f + c])/(mu_w) ; 
+      lambda_w[TAM_C*f + c]= ((K[TAM_C*f + c]*krw[TAM_C*f + c]))/(mu_w) ; 
     }
   }
 }
@@ -944,7 +944,7 @@ void calcular_f_w(){
   for(f=0 ; f<TAM_F ; f++){
     for(c=0 ; c<TAM_C ; c++){
       arriba= saturacion[TAM_C*f + c]*saturacion[TAM_C*f + c] ;
-      abajo= arriba + (1.0*mu_w/1.0*mu_n)*(1-saturacion[TAM_C*f + c])*(1-saturacion[TAM_C*f + c]) ;
+      abajo= arriba + ((1.0*mu_w)/(1.0*mu_n))*(1-saturacion[TAM_C*f + c])*(1-saturacion[TAM_C*f + c]) ;
       f_w[TAM_C*f + c]= (1.0*arriba)/(1.0*abajo);
     }
   }
@@ -1099,7 +1099,7 @@ void calculo_integral(){
   
   
 }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
