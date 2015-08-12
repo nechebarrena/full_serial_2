@@ -83,7 +83,31 @@ void inicializar_K(){
       K[TAM_C*f + c]= 1.0 ; 
     }
   }
-  
+ 
+ /*
+  for(f=0 ; f<(TAM_F/5) ; f++){
+  c=(TAM_C/6);
+  K[TAM_C*f + c]= 0.0 ;
+  K[TAM_C*f + c+1]= 0.0 ; 
+  K[TAM_C*f + c+2]= 0.0 ;
+  }
+  */
+ 
+ /*
+   for(f=0 ; f<TAM_F ; f++){
+    for(c=0 ; c<TAM_C ; c++){
+      if((c==f) || (1 +c==f) || (-1 +c==f) || (-2+c==f) || (-3+c==f) || (-4+c==f) || (-5+c==f) || (-6+c==f) || (2+c==f) || (3+c==f) || (4+c==f) || (5+c==f) || (6+c==f)){
+      K[TAM_C*f + c]= 1.0 ;
+      }
+    }
+  }
+ 
+   for(f=0 ; f<TAM_F/5 ; f++){
+    for(c=0 ; c<TAM_C/5 ; c++){
+      K[TAM_C*f + c]= 1.0 ; 
+    }
+  }
+ */
   
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -186,13 +210,13 @@ void inicializar_saturacion(){
   if(CB==1){
       for(f=0 ; f<TAM_F ; f++){
 	for(c=0 ; c<TAM_C ; c++){
-	  saturacion[TAM_C*f + c]= 0.9*exp( -(c*c + f*f)/(alfa) ) + 0.1; 
+	  saturacion[TAM_C*f + c]= 1.0*exp( -(c*c + f*f)/(alfa) ) + 0.0; 
 	}
       }
 
   }
   
-  
+ 
   
   
 } 
@@ -205,7 +229,7 @@ void calcular_lambda_n(){
   calcular_krn();
   for(f=0 ; f<TAM_F ; f++){
     for(c=0 ; c<TAM_C ; c++){
-      lambda_n[TAM_C*f + c]= ((K[TAM_C*f + c]*krn[TAM_C*f + c]))/(mu_n) ; 
+      lambda_n[TAM_C*f + c]= (K[TAM_C*f + c]*krn[TAM_C*f + c])/(mu_n) ; 
     }
   }
 }
@@ -218,7 +242,7 @@ void calcular_lambda_w(){
   calcular_krw();
   for(f=0 ; f<TAM_F ; f++){
     for(c=0 ; c<TAM_C ; c++){
-      lambda_w[TAM_C*f + c]= ((K[TAM_C*f + c]*krw[TAM_C*f + c]))/(mu_w) ; 
+      lambda_w[TAM_C*f + c]= (K[TAM_C*f + c]*krw[TAM_C*f + c])/(mu_w) ; 
     }
   }
 }
@@ -944,7 +968,7 @@ void calcular_f_w(){
   for(f=0 ; f<TAM_F ; f++){
     for(c=0 ; c<TAM_C ; c++){
       arriba= saturacion[TAM_C*f + c]*saturacion[TAM_C*f + c] ;
-      abajo= arriba + ((1.0*mu_w)/(1.0*mu_n))*(1-saturacion[TAM_C*f + c])*(1-saturacion[TAM_C*f + c]) ;
+      abajo= arriba + (((1.0*mu_w)/(1.0*mu_n))*(1-saturacion[TAM_C*f + c])*(1-saturacion[TAM_C*f + c])) ;
       f_w[TAM_C*f + c]= (1.0*arriba)/(1.0*abajo);
     }
   }
@@ -1070,9 +1094,9 @@ void calculo_velocidad(){
    int c=0;
   
   
-    for(f=0 ; f<(TAM_F-1) ; f++){
-      for(c=0 ; c<(TAM_C-1) ; c++){
-	velocidad[TAM_C*f + c]= pow(U_t_2[TAM_C*f + c]*U_t_2[TAM_C*f + c] + U_t_4[TAM_C*f + c]*U_t_4[TAM_C*f + c],0.5)  ;
+    for(f=0 ; f<(TAM_F) ; f++){
+      for(c=0 ; c<(TAM_C) ; c++){
+	velocidad[TAM_C*f + c]= pow(U_t_1[TAM_C*f + c]*U_t_1[TAM_C*f + c] + U_t_3[TAM_C*f + c]*U_t_3[TAM_C*f + c],0.5)  ;
       }
     }
     
@@ -1102,14 +1126,132 @@ void calculo_integral(){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+void alocar_variables(){
+  
+ 
+  presion=malloc(sizeof(double)*TAM_C*TAM_F);
+  presion_N=malloc(sizeof(double)*TAM_C*TAM_F);
+  presion_capilar=malloc(sizeof(double)*TAM_C*TAM_F);
+  
+  saturacion=malloc(sizeof(double)*TAM_C*TAM_F);
+  saturacion_N=malloc(sizeof(double)*TAM_C*TAM_F);
+  
+  Q_W=malloc(sizeof(double)*TAM_C*TAM_F);
+  Q_N=malloc(sizeof(double)*TAM_C*TAM_F);
+  
+  K=malloc(sizeof(double)*TAM_C*TAM_F);
+  
+  lambda_n=malloc(sizeof(double)*TAM_C*TAM_F);
+  lambda_w=malloc(sizeof(double)*TAM_C*TAM_F);
+  
+  krn=malloc(sizeof(double)*TAM_C*TAM_F);
+  krw=malloc(sizeof(double)*TAM_C*TAM_F);
+  
+  lambda_t=malloc(sizeof(double)*TAM_C*TAM_F);
+  lambda_d=malloc(sizeof(double)*TAM_C*TAM_F);
+  
+  termino_presion_capilar=malloc(sizeof(double)*TAM_C*TAM_F);
+  
+  lambda_d_1=malloc(sizeof(double)*TAM_C*TAM_F);
+  lambda_d_2=malloc(sizeof(double)*TAM_C*TAM_F);
+  lambda_d_3=malloc(sizeof(double)*TAM_C*TAM_F);
+  lambda_d_4=malloc(sizeof(double)*TAM_C*TAM_F);
+
+  lambda_t_1=malloc(sizeof(double)*TAM_C*TAM_F);
+  lambda_t_2=malloc(sizeof(double)*TAM_C*TAM_F);
+  lambda_t_3=malloc(sizeof(double)*TAM_C*TAM_F);
+  lambda_t_4=malloc(sizeof(double)*TAM_C*TAM_F);
+
+  presion_n=malloc(sizeof(double)*TAM_C*TAM_F);
+  presion_w=malloc(sizeof(double)*TAM_C*TAM_F);
+  
+  
+  lambda_n_1=malloc(sizeof(double)*TAM_C*TAM_F);
+  lambda_n_2=malloc(sizeof(double)*TAM_C*TAM_F);
+  lambda_n_3=malloc(sizeof(double)*TAM_C*TAM_F);
+  lambda_n_4=malloc(sizeof(double)*TAM_C*TAM_F);
+
+  lambda_w_1=malloc(sizeof(double)*TAM_C*TAM_F);
+  lambda_w_2=malloc(sizeof(double)*TAM_C*TAM_F);
+  lambda_w_3=malloc(sizeof(double)*TAM_C*TAM_F);
+  lambda_w_4=malloc(sizeof(double)*TAM_C*TAM_F);
+  
+  U_w_1=malloc(sizeof(double)*TAM_C*TAM_F);
+  U_w_2=malloc(sizeof(double)*TAM_C*TAM_F);
+  U_w_3=malloc(sizeof(double)*TAM_C*TAM_F);
+  U_w_4=malloc(sizeof(double)*TAM_C*TAM_F);
+  
+  U_n_1=malloc(sizeof(double)*TAM_C*TAM_F);
+  U_n_2=malloc(sizeof(double)*TAM_C*TAM_F);
+  U_n_3=malloc(sizeof(double)*TAM_C*TAM_F);
+  U_n_4=malloc(sizeof(double)*TAM_C*TAM_F);
+  
+  U_t_1=malloc(sizeof(double)*TAM_C*TAM_F);
+  U_t_2=malloc(sizeof(double)*TAM_C*TAM_F);
+  U_t_3=malloc(sizeof(double)*TAM_C*TAM_F);
+  U_t_4=malloc(sizeof(double)*TAM_C*TAM_F);
+  
+  
+  vel_1=malloc(sizeof(double)*TAM_C*TAM_F);
+  vel_2=malloc(sizeof(double)*TAM_C*TAM_F);
+  vel_3=malloc(sizeof(double)*TAM_C*TAM_F);
+  vel_4=malloc(sizeof(double)*TAM_C*TAM_F);
+  
+  
+  
+  
+  
+  f_w=malloc(sizeof(double)*TAM_C*TAM_F);
+  
+  velocidad=malloc(sizeof(double)*TAM_C*TAM_F);
+  
+  integral=malloc(sizeof(double));
+  integral_total=malloc(sizeof(double)*iteraciones); 
+  
+  
+  
+}
 
 
 
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void inicializar_variables(){
+  inicializar_presion();
+  inicializar_saturacion();
+  inicializar_Q_N();
+  inicializar_Q_W();
+  inicializar_K();
+  }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+void calcular_lambdas(){
+  
+  
+  calcular_lambda_w();
+  calcular_lambda_n();
+  calcular_lambda_t();
+  calcular_lambda_d();
+  
 
+  
+  calcular_lambda_d_1_2_3_4();
+  calcular_lambda_t_1_2_3_4_A(); // Alternativa
+  
+  calcular_lambda_n_1_2_3_4();
+  calcular_lambda_w_1_2_3_4();
+  
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void calcular_velocidades(){
+  
+  calcular_U_w_1_2_3_4();
+  calcular_U_n_1_2_3_4();
+  calcular_U_t_1_2_3_4();
+}
 
 
 

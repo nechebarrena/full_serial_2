@@ -286,3 +286,155 @@ void copiar_l(){
   
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+void calculo_velocidad_alternativa(){
+  
+  int c=0;
+  int f=0;
+  
+
+  
+  for(f=1 ; f<(TAM_F-1) ; f++){
+    for(c=1 ; c<(TAM_C-1) ; c++){
+    
+      vel_1[TAM_C*f + c]=(presion[TAM_C*f + (c-1)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+      vel_2[TAM_C*f + c]=(presion[TAM_C*f + (c+1)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+      vel_3[TAM_C*f + c]=(presion[TAM_C*(f-1) + (c)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+      vel_4[TAM_C*f + c]=(presion[TAM_C*(f+1) + (c)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+    }
+  }
+  
+  
+  
+/* borde izquierdo*/
+
+  for(f=1 ; f<(TAM_F-1) ; f++){
+    c=0;
+    
+      vel_1[TAM_C*f + c]=0.0;//(presion[TAM_C*f + (c-1)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+      vel_2[TAM_C*f + c]=(presion[TAM_C*f + (c+1)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+      vel_3[TAM_C*f + c]=(presion[TAM_C*(f-1) + (c)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+      vel_4[TAM_C*f + c]=(presion[TAM_C*(f+1) + (c)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+    
+  }
+  
+/*borde derecho*/ 
+
+  for(f=1 ; f<(TAM_F-1) ; f++){
+    c=TAM_C -1;
+    
+      vel_1[TAM_C*f + c]=(presion[TAM_C*f + (c-1)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+      vel_2[TAM_C*f + c]=0.0;//(presion[TAM_C*f + (c+1)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+      vel_3[TAM_C*f + c]=(presion[TAM_C*(f-1) + (c)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+      vel_4[TAM_C*f + c]=(presion[TAM_C*(f+1) + (c)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+    
+  }
+ 
+/*borde superior*/
+
+  f=0;
+    for(c=1 ; c<(TAM_C-1) ; c++){
+    
+      vel_1[TAM_C*f + c]=(presion[TAM_C*f + (c-1)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+      vel_2[TAM_C*f + c]=(presion[TAM_C*f + (c+1)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+      vel_3[TAM_C*f + c]=0.0;//(presion[TAM_C*(f-1) + (c)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+      vel_4[TAM_C*f + c]=(presion[TAM_C*(f+1) + (c)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+    }
+  
+/*borde inferior*/
+
+  f=TAM_C-1;
+    for(c=1 ; c<(TAM_C-1) ; c++){
+    
+      vel_1[TAM_C*f + c]=(presion[TAM_C*f + (c-1)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+      vel_2[TAM_C*f + c]=(presion[TAM_C*f + (c+1)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+      vel_3[TAM_C*f + c]=(presion[TAM_C*(f-1) + (c)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+      vel_4[TAM_C*f + c]=0.0;//(presion[TAM_C*(f+1) + (c)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+    }
+  
+
+/*esquina superior izquierda*/  
+  
+
+c=0;
+f=0;
+      vel_1[TAM_C*f + c]=0.0;//(presion[TAM_C*f + (c-1)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+      vel_2[TAM_C*f + c]=(presion[TAM_C*f + (c+1)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+      vel_3[TAM_C*f + c]=0.0;//(presion[TAM_C*(f-1) + (c)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+      vel_4[TAM_C*f + c]=(presion[TAM_C*(f+1) + (c)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+    
+  
+/*esquina superior derecha*/  
+
+c=TAM_C-1;
+f=0;
+      vel_1[TAM_C*f + c]=(presion[TAM_C*f + (c-1)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+      vel_2[TAM_C*f + c]=0.0;//(presion[TAM_C*f + (c+1)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+      vel_3[TAM_C*f + c]=0.0;//(presion[TAM_C*(f-1) + (c)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+      vel_4[TAM_C*f + c]=(presion[TAM_C*(f+1) + (c)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+    
+      
+/*esquina inferior izquierda*/
+
+c=0;
+f=TAM_C-1;
+      vel_1[TAM_C*f + c]=0.0;//(presion[TAM_C*f + (c-1)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+      vel_2[TAM_C*f + c]=(presion[TAM_C*f + (c+1)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+      vel_3[TAM_C*f + c]=(presion[TAM_C*(f-1) + (c)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+      vel_4[TAM_C*f + c]=0.0;//(presion[TAM_C*(f+1) + (c)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+    
+/*esquina inferior derecha*/
+
+c=TAM_C-1;
+f=TAM_C-1;
+      vel_1[TAM_C*f + c]=(presion[TAM_C*f + (c-1)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+      vel_2[TAM_C*f + c]=0.0;//(presion[TAM_C*f + (c+1)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+      vel_3[TAM_C*f + c]=(presion[TAM_C*(f-1) + (c)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+      vel_4[TAM_C*f + c]=0.0;//(presion[TAM_C*(f+1) + (c)]  - presion[TAM_C*f + (c)]  )*TAM_C;
+    
+  
+  
+  
+  
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+void copiar_velocidades(){
+  
+  int f=0;
+  int c=0;
+  
+   for(f=0 ; f<(TAM_F) ; f++){
+    for(c=0 ; c<(TAM_C) ; c++){
+      
+      U_t_1[TAM_C*f + c]=vel_1[TAM_C*f +c];
+      U_t_2[TAM_C*f + c]=vel_2[TAM_C*f +c];
+      U_t_3[TAM_C*f + c]=vel_3[TAM_C*f +c];
+      U_t_4[TAM_C*f + c]=vel_4[TAM_C*f +c];
+      
+    }
+   }
+  
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

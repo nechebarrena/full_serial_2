@@ -329,8 +329,19 @@ Deberia correr la simulacion hasta el momento justo anterior a que se cuelgue y 
 Por ultimo, no estoy seguro de que la evolucion de la saturacion este teniendo en cuenta la relacion de viscosidades. Esto lo digo solo de mirar 
 la forma de la saturacion evolucionada y de compararla con los que recuerdo del programa hecho en la tesis.
 
+--------------------------
 
+Martes 11 de agosto
 
+Desde el 13 de abril hasta aca hice muchas modificaciones porque fui descubriendo muchos errores de distinto tipo. En este momento confio bastante en
+la funcion que resuelve el campo de presiones y en las funciones auxiliares para hacer esto. Creo que la funcion que evoluciona la saturacion
+tambien esta funcionando bien. Aun asi tengo varios temas no resueltos. Lo primero que no me queda claro es si el caudal de inyeccion Q_W tiene que 
+ser igual en magnitud al caudal Q_N de extraccion o si deben estar pesados por la densidad de cada fluido. A su vez no entiendo en que otro lugar
+del set de ecuaciones aparece la densidad y como cambiaria estos las ecuaciones que resuelvo.
+Por otro lado actualmente las condiciones que impongo son de flujo solo de agua en la entrada y flujo solo de petroleo a la salida. Esta es una condicion 
+muy particular pero no se como poner otra. En principio no parece compatible que pueda fijar el flujo entrante, el saliente y la condicion inicial de saturacion.
+Quizas deba probar fijar el caudal que inyecto, la condicion inicial de saturacion y dejar libre lo que saco.
+Todo esto sin prender la presion capilar. Esto queda para mas adelante.
 
 
 

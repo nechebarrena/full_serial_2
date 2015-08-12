@@ -38,8 +38,11 @@ void recinto_interno_s(){
       else if(U_t_1[TAM_C*f + c] > 0.0){ // si es positiva va para "atras"
         f_w_1=f_w[TAM_C*f + (c)] ;
       }
+      else if(U_t_1[TAM_C*f + c] == 0.0){ // si es cero hago cero la funcion
+        f_w_1=0.0 ;
+      }
       
-      
+           
       
       if(U_t_3[TAM_C*f + c] < 0.0){ //si es negativa va para "adelante"
 	f_w_3=f_w[TAM_C*(f-1) + (c)] ;
@@ -47,7 +50,9 @@ void recinto_interno_s(){
       else if(U_t_3[TAM_C*f + c] > 0.0){ // si es positiva va para "atras"
         f_w_3=f_w[TAM_C*f + (c)] ;
       }
-
+      else if(U_t_3[TAM_C*f + c] == 0.0){ // si es cero hago cero la funcion
+        f_w_3=0.0 ;
+      }
       
       
       if(U_t_2[TAM_C*f + (c)] > 0.0  ){ //si es positiva va para "adelante"
@@ -55,6 +60,9 @@ void recinto_interno_s(){
       }
       else if(U_t_2[TAM_C*f + (c)] < 0.0){ //si es negativa va para "atras"
 	f_w_2=f_w[TAM_C*f + (c+1)] ;
+      }
+      else if(U_t_2[TAM_C*f + c] == 0.0){ // si es cero hago cero la funcion
+        f_w_2=0.0 ;
       }
       
       
@@ -64,11 +72,21 @@ void recinto_interno_s(){
       else if(U_t_4[TAM_C*f + (c)] < 0.0){ //si es negativa va para "atras"
 	f_w_4=f_w[TAM_C*(f+1) + (c)] ;
       }
+      else if(U_t_4[TAM_C*f + c] == 0.0){ // si es cero hago cero la funcion
+        f_w_4=0.0 ;
+      }
       
-      
-      
+      /*
+      f_w_1=f_w[TAM_C*f + (c-1)] ;
+      f_w_3=f_w[TAM_C*(f-1) + (c)] ;
+      f_w_2=f_w[TAM_C*f + (c)] ;
+      f_w_4=f_w[TAM_C*f + (c)] ;
+      */
       
       epsilon=  f_w_1*U_t_1[TAM_C*f + (c)] + f_w_2*U_t_2[TAM_C*f + (c)] + f_w_3*U_t_3[TAM_C*f + (c)] + f_w_4*U_t_4[TAM_C*f + (c)] ;
+      
+      //epsilon=  1.0*U_t_1[TAM_C*f + (c)] + 1.0*U_t_2[TAM_C*f + (c)] + 1.0*U_t_3[TAM_C*f + (c)] + 1.0*U_t_4[TAM_C*f + (c)] ;
+      
       gama= f_w_1*lambda_n_1[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] + f_w_2*lambda_n_2[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] + f_w_3*lambda_n_3[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)]
       + f_w_4*lambda_n_4[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] ;
 
@@ -78,7 +96,7 @@ void recinto_interno_s(){
       
       
       if(c==1 && f==1){
-        printf("\n termino = %.10f \n",1.0*courant*( (-1.0*epsilon -1.0*gama)/(1.0*TAM_C) + ( Q_W[TAM_C*f + (c)]/(1.0*TAM_C*TAM_C) )) );	
+        //printf("\n termino = %.10f \n",1.0*courant*( (-1.0*epsilon -1.0*gama)/(1.0*TAM_C) + ( Q_W[TAM_C*f + (c)]/(1.0*TAM_C*TAM_C) )) );	
       }
       
       
@@ -120,7 +138,9 @@ void borde_izquierdo_s(){
       else if(U_t_3[TAM_C*f + c] > 0.0){ // si es positiva va para "atras"
         f_w_3=f_w[TAM_C*f + (c)] ;
       }
-
+      else if(U_t_3[TAM_C*f + c] == 0.0){ // si es cero hago cero la funcion
+        f_w_3=0.0 ;
+      }
       
       
       if(U_t_2[TAM_C*f + (c)] > 0.0  ){ //si es positiva va para "adelante"
@@ -129,7 +149,9 @@ void borde_izquierdo_s(){
       else if(U_t_2[TAM_C*f + (c)] < 0.0){ //si es negativa va para "atras"
 	f_w_2=f_w[TAM_C*f + (c+1)] ;
       }
-      
+      else if(U_t_2[TAM_C*f + c] == 0.0){ // si es cero hago cero la funcion
+        f_w_2=0.0 ;
+      }
       
       if(U_t_4[TAM_C*f + (c)] > 0.0  ){ //si es positiva va para "adelante"
         f_w_4=f_w[TAM_C*f + (c)] ;
@@ -137,11 +159,21 @@ void borde_izquierdo_s(){
       else if(U_t_4[TAM_C*f + (c)] < 0.0){ //si es negativa va para "atras"
 	f_w_4=f_w[TAM_C*(f+1) + (c)] ;
       }
-      
-      
+      else if(U_t_4[TAM_C*f + c] == 0.0){ // si es cero hago cero la funcion
+        f_w_4=0.0 ;
+      }
+      /*
+      //f_w_1=f_w[TAM_C*f + (c-1)] ;
+      f_w_3=f_w[TAM_C*(f-1) + (c)] ;
+      f_w_2=f_w[TAM_C*f + (c)] ;
+      f_w_4=f_w[TAM_C*f + (c)] ;
+      */
       
       
       epsilon=  f_w_1*U_t_1[TAM_C*f + (c)] + f_w_2*U_t_2[TAM_C*f + (c)] + f_w_3*U_t_3[TAM_C*f + (c)] + f_w_4*U_t_4[TAM_C*f + (c)] ;
+      
+      //epsilon=  1.0*U_t_1[TAM_C*f + (c)] + 1.0*U_t_2[TAM_C*f + (c)] + 1.0*U_t_3[TAM_C*f + (c)] + 1.0*U_t_4[TAM_C*f + (c)] ;
+      
       gama= f_w_1*lambda_n_1[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] + f_w_2*lambda_n_2[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] + f_w_3*lambda_n_3[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)]
       + f_w_4*lambda_n_4[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] ;
 
@@ -187,6 +219,9 @@ void borde_derecho_s(){
       else if(U_t_1[TAM_C*f + c] > 0.0){ // si es positiva va para "atras"
         f_w_1=f_w[TAM_C*f + (c)] ;
       }
+      else if(U_t_1[TAM_C*f + c] == 0.0){ // si es cero hago cero la funcion
+        f_w_1=0.0 ;
+      }
       
       
       
@@ -196,7 +231,9 @@ void borde_derecho_s(){
       else if(U_t_3[TAM_C*f + c] > 0.0){ // si es positiva va para "atras"
         f_w_3=f_w[TAM_C*f + (c)] ;
       }
-
+      else if(U_t_3[TAM_C*f + c] == 0.0){ // si es cero hago cero la funcion
+        f_w_3=0.0 ;
+      }
       
       
      f_w_2=0.0;
@@ -208,11 +245,21 @@ void borde_derecho_s(){
       else if(U_t_4[TAM_C*f + (c)] < 0.0){ //si es negativa va para "atras"
 	f_w_4=f_w[TAM_C*(f+1) + (c)] ;
       }
-      
-      
-      
+      else if(U_t_4[TAM_C*f + c] == 0.0){ // si es cero hago cero la funcion
+        f_w_4=0.0 ;
+      }
+      /*
+      f_w_1=f_w[TAM_C*f + (c-1)] ;
+      f_w_3=f_w[TAM_C*(f-1) + (c)] ;
+      //f_w_2=f_w[TAM_C*f + (c)] ;
+      f_w_4=f_w[TAM_C*f + (c)] ;
+      */
       
       epsilon=  f_w_1*U_t_1[TAM_C*f + (c)] + f_w_2*U_t_2[TAM_C*f + (c)] + f_w_3*U_t_3[TAM_C*f + (c)] + f_w_4*U_t_4[TAM_C*f + (c)] ;
+     
+      
+      //epsilon=  1.0*U_t_1[TAM_C*f + (c)] + 1.0*U_t_2[TAM_C*f + (c)] + 1.0*U_t_3[TAM_C*f + (c)] + 1.0*U_t_4[TAM_C*f + (c)] ;
+      
       gama= f_w_1*lambda_n_1[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] + f_w_2*lambda_n_2[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] + f_w_3*lambda_n_3[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)]
       + f_w_4*lambda_n_4[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] ;
 
@@ -251,6 +298,9 @@ void borde_superior_s(){
       else if(U_t_1[TAM_C*f + c] > 0.0){ // si es positiva va para "atras"
         f_w_1=f_w[TAM_C*f + (c)] ;
       }
+      else if(U_t_1[TAM_C*f + c] == 0.0){ // si es cero hago cero la funcion
+        f_w_1=0.0 ;
+      }
       
       
       
@@ -264,7 +314,9 @@ void borde_superior_s(){
       else if(U_t_2[TAM_C*f + (c)] < 0.0){ //si es negativa va para "atras"
 	f_w_2=f_w[TAM_C*f + (c+1)] ;
       }
-      
+      else if(U_t_2[TAM_C*f + c] == 0.0){ // si es cero hago cero la funcion
+        f_w_2=0.0 ;
+      }
       
       if(U_t_4[TAM_C*f + (c)] > 0.0  ){ //si es positiva va para "adelante"
         f_w_4=f_w[TAM_C*f + (c)] ;
@@ -272,11 +324,21 @@ void borde_superior_s(){
       else if(U_t_4[TAM_C*f + (c)] < 0.0){ //si es negativa va para "atras"
 	f_w_4=f_w[TAM_C*(f+1) + (c)] ;
       }
-      
-      
-      
+      else if(U_t_4[TAM_C*f + c] == 0.0){ // si es cero hago cero la funcion
+        f_w_4=0.0 ;
+      }
+      /*
+      f_w_1=f_w[TAM_C*f + (c-1)] ;
+      //f_w_3=f_w[TAM_C*(f-1) + (c)] ;
+      f_w_2=f_w[TAM_C*f + (c)] ;
+      f_w_4=f_w[TAM_C*f + (c)] ;
+      */
       
       epsilon=  f_w_1*U_t_1[TAM_C*f + (c)] + f_w_2*U_t_2[TAM_C*f + (c)] + f_w_3*U_t_3[TAM_C*f + (c)] + f_w_4*U_t_4[TAM_C*f + (c)] ;
+     
+      
+      //epsilon=  1.0*U_t_1[TAM_C*f + (c)] + 1.0*U_t_2[TAM_C*f + (c)] + 1.0*U_t_3[TAM_C*f + (c)] + 1.0*U_t_4[TAM_C*f + (c)] ;
+      
       gama= f_w_1*lambda_n_1[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] + f_w_2*lambda_n_2[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] + f_w_3*lambda_n_3[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)]
       + f_w_4*lambda_n_4[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] ;
 
@@ -317,6 +379,9 @@ void borde_inferior_s(){
       else if(U_t_1[TAM_C*f + c] > 0.0){ // si es positiva va para "atras"
         f_w_1=f_w[TAM_C*f + (c)] ;
       }
+      else if(U_t_1[TAM_C*f + c] == 0.0){ // si es cero hago cero la funcion
+        f_w_1=0.0 ;
+      }
       
       
       
@@ -326,7 +391,9 @@ void borde_inferior_s(){
       else if(U_t_3[TAM_C*f + c] > 0.0){ // si es positiva va para "atras"
         f_w_3=f_w[TAM_C*f + (c)] ;
       }
-
+      else if(U_t_3[TAM_C*f + c] == 0.0){ // si es cero hago cero la funcion
+        f_w_3=0.0 ;
+      }
       
       
       if(U_t_2[TAM_C*f + (c)] > 0.0  ){ //si es positiva va para "adelante"
@@ -335,14 +402,23 @@ void borde_inferior_s(){
       else if(U_t_2[TAM_C*f + (c)] < 0.0){ //si es negativa va para "atras"
 	f_w_2=f_w[TAM_C*f + (c+1)] ;
       }
-      
+      else if(U_t_2[TAM_C*f + c] == 0.0){ // si es cero hago cero la funcion
+        f_w_2=0.0 ;
+      }
       
      f_w_4=0.0;
       
-      
-      
+     /*
+      f_w_1=f_w[TAM_C*f + (c-1)] ;
+      f_w_3=f_w[TAM_C*(f-1) + (c)] ;
+      f_w_2=f_w[TAM_C*f + (c)] ;
+      //f_w_4=f_w[TAM_C*f + (c)] ;
+      */
       
       epsilon=  f_w_1*U_t_1[TAM_C*f + (c)] + f_w_2*U_t_2[TAM_C*f + (c)] + f_w_3*U_t_3[TAM_C*f + (c)] + f_w_4*U_t_4[TAM_C*f + (c)] ;
+      
+      //epsilon=  1.0*U_t_1[TAM_C*f + (c)] + 1.0*U_t_2[TAM_C*f + (c)] + 1.0*U_t_3[TAM_C*f + (c)] + 1.0*U_t_4[TAM_C*f + (c)] ;
+      
       gama= f_w_1*lambda_n_1[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] + f_w_2*lambda_n_2[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] + f_w_3*lambda_n_3[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)]
       + f_w_4*lambda_n_4[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] ;
 
@@ -386,7 +462,9 @@ void esquina_superior_izquierda_s(){
       else if(U_t_2[TAM_C*f + (c)] < 0.0){ //si es negativa va para "atras"
 	f_w_2=f_w[TAM_C*f + (c+1)] ;
       }
-      
+      else if(U_t_2[TAM_C*f + c] == 0.0){ // si es cero hago cero la funcion
+        f_w_2=0.0 ;
+      }
       
       if(U_t_4[TAM_C*f + (c)] > 0.0  ){ //si es positiva va para "adelante"
         f_w_4=f_w[TAM_C*f + (c)] ;
@@ -394,11 +472,20 @@ void esquina_superior_izquierda_s(){
       else if(U_t_4[TAM_C*f + (c)] < 0.0){ //si es negativa va para "atras"
 	f_w_4=f_w[TAM_C*(f+1) + (c)] ;
       }
-      
-      
-      
+      else if(U_t_4[TAM_C*f + c] == 0.0){ // si es cero hago cero la funcion
+        f_w_4=0.0 ;
+      }
+      /*
+      //f_w_1=f_w[TAM_C*f + (c-1)] ;
+      //f_w_3=f_w[TAM_C*(f-1) + (c)] ;
+      f_w_2=f_w[TAM_C*f + (c)] ;
+      f_w_4=f_w[TAM_C*f + (c)] ;
+      */
       
       epsilon=  f_w_1*U_t_1[TAM_C*f + (c)] + f_w_2*U_t_2[TAM_C*f + (c)] + f_w_3*U_t_3[TAM_C*f + (c)] + f_w_4*U_t_4[TAM_C*f + (c)] ;
+      
+      //epsilon=  1.0*U_t_1[TAM_C*f + (c)] + 1.0*U_t_2[TAM_C*f + (c)] + 1.0*U_t_3[TAM_C*f + (c)] + 1.0*U_t_4[TAM_C*f + (c)] ;
+      
       gama= f_w_1*lambda_n_1[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] + f_w_2*lambda_n_2[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] + f_w_3*lambda_n_3[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)]
       + f_w_4*lambda_n_4[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] ;
 
@@ -439,6 +526,9 @@ void esquina_superior_derecha_s(){
       else if(U_t_1[TAM_C*f + c] > 0.0){ // si es positiva va para "atras"
         f_w_1=f_w[TAM_C*f + (c)] ;
       }
+      else if(U_t_1[TAM_C*f + c] == 0.0){ // si es cero hago cero la funcion
+        f_w_1=0.0 ;
+      }
       
       
       
@@ -455,11 +545,21 @@ void esquina_superior_derecha_s(){
       else if(U_t_4[TAM_C*f + (c)] < 0.0){ //si es negativa va para "atras"
 	f_w_4=f_w[TAM_C*(f+1) + (c)] ;
       }
-      
-      
+      else if(U_t_4[TAM_C*f + c] == 0.0){ // si es cero hago cero la funcion
+        f_w_4=0.0 ;
+      }
+      /*
+      f_w_1=f_w[TAM_C*f + (c-1)] ;
+      //f_w_3=f_w[TAM_C*(f-1) + (c)] ;
+      //f_w_2=f_w[TAM_C*f + (c)] ;
+      f_w_4=f_w[TAM_C*f + (c)] ;
+      */
       
       
       epsilon=  f_w_1*U_t_1[TAM_C*f + (c)] + f_w_2*U_t_2[TAM_C*f + (c)] + f_w_3*U_t_3[TAM_C*f + (c)] + f_w_4*U_t_4[TAM_C*f + (c)] ;
+      
+      //epsilon=  1.0*U_t_1[TAM_C*f + (c)] + 1.0*U_t_2[TAM_C*f + (c)] + 1.0*U_t_3[TAM_C*f + (c)] + 1.0*U_t_4[TAM_C*f + (c)] ;
+      
       gama= f_w_1*lambda_n_1[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] + f_w_2*lambda_n_2[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] + f_w_3*lambda_n_3[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)]
       + f_w_4*lambda_n_4[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] ;
 
@@ -495,7 +595,9 @@ void esquina_inferior_izquierda_s(){
       else if(U_t_3[TAM_C*f + c] > 0.0){ // si es positiva va para "atras"
         f_w_3=f_w[TAM_C*f + (c)] ;
       }
-
+      else if(U_t_3[TAM_C*f + c] == 0.0){ // si es cero hago cero la funcion
+        f_w_3=0.0 ;
+      }
       
       
       if(U_t_2[TAM_C*f + (c)] > 0.0  ){ //si es positiva va para "adelante"
@@ -504,14 +606,23 @@ void esquina_inferior_izquierda_s(){
       else if(U_t_2[TAM_C*f + (c)] < 0.0){ //si es negativa va para "atras"
 	f_w_2=f_w[TAM_C*f + (c+1)] ;
       }
-      
+      else if(U_t_2[TAM_C*f + c] == 0.0){ // si es cero hago cero la funcion
+        f_w_2=0.0 ;
+      }
       
      f_w_4=0.0;
       
-      
-      
+     /*
+      //f_w_1=f_w[TAM_C*f + (c-1)] ;
+      f_w_3=f_w[TAM_C*(f-1) + (c)] ;
+      f_w_2=f_w[TAM_C*f + (c)] ;
+      //f_w_4=f_w[TAM_C*f + (c)] ;
+      */
       
       epsilon=  f_w_1*U_t_1[TAM_C*f + (c)] + f_w_2*U_t_2[TAM_C*f + (c)] + f_w_3*U_t_3[TAM_C*f + (c)] + f_w_4*U_t_4[TAM_C*f + (c)] ;
+     
+      //epsilon=  1.0*U_t_1[TAM_C*f + (c)] + 1.0*U_t_2[TAM_C*f + (c)] + 1.0*U_t_3[TAM_C*f + (c)] + 1.0*U_t_4[TAM_C*f + (c)] ;
+      
       gama= f_w_1*lambda_n_1[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] + f_w_2*lambda_n_2[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] + f_w_3*lambda_n_3[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)]
       + f_w_4*lambda_n_4[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] ;
 
@@ -543,6 +654,9 @@ void esquina_inferior_derecha_s(){
       else if(U_t_1[TAM_C*f + c] > 0.0){ // si es positiva va para "atras"
         f_w_1=f_w[TAM_C*f + (c)] ;
       }
+      else if(U_t_1[TAM_C*f + c] == 0.0){ // si es cero hago cero la funcion
+        f_w_1=0.0 ;
+      }
       
       
       
@@ -552,17 +666,28 @@ void esquina_inferior_derecha_s(){
       else if(U_t_3[TAM_C*f + c] > 0.0){ // si es positiva va para "atras"
         f_w_3=f_w[TAM_C*f + (c)] ;
       }
-
+      else if(U_t_3[TAM_C*f + c] == 0.0){ // si es cero hago cero la funcion
+        f_w_3=0.0 ;
+      }
       
       
      f_w_2=0.0;
      
      f_w_4=0.0;
       
+     /*
+      f_w_1=f_w[TAM_C*f + (c-1)] ;
+      f_w_3=f_w[TAM_C*(f-1) + (c)] ;
+      //f_w_2=f_w[TAM_C*f + (c)] ;
+      //f_w_4=f_w[TAM_C*f + (c)] ;
+      */
       
       
       
       epsilon=  f_w_1*U_t_1[TAM_C*f + (c)] + f_w_2*U_t_2[TAM_C*f + (c)] + f_w_3*U_t_3[TAM_C*f + (c)] + f_w_4*U_t_4[TAM_C*f + (c)] ;
+      
+      //epsilon=  1.0*U_t_1[TAM_C*f + (c)] + 1.0*U_t_2[TAM_C*f + (c)] + 1.0*U_t_3[TAM_C*f + (c)] + 1.0*U_t_4[TAM_C*f + (c)] ;
+      
       gama= f_w_1*lambda_n_1[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] + f_w_2*lambda_n_2[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] + f_w_3*lambda_n_3[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)]
       + f_w_4*lambda_n_4[TAM_C*f + (c)]*presion_capilar[TAM_C*f + (c)] ;
 

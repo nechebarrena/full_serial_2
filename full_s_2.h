@@ -13,7 +13,7 @@
 #define CB 1   // 0 para una condicion de borde tipo canal y 1 para una tipo FQS
 
 #define mu_w 1.0
-#define mu_n 1.0
+#define mu_n 10.0
 
 #define q_n 10.0
 #define q_w 10.0
@@ -21,9 +21,12 @@
 
 #define cachito 0.0000000001
 #define error 0.00000000001
+#define error_1 0.00001
 
 #define courant 0.1
 #define PI 1.0
+
+#define iteraciones 50000
 
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
@@ -100,6 +103,12 @@ double *integral;
 double *integral_total;
 
 
+double *vel_1;
+double *vel_2;
+double *vel_3;
+double *vel_4;
+
+
 
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
@@ -137,6 +146,10 @@ void calcular_f_w();
 void delta_tiempo();
 
 void calculo_velocidad();
+void alocar_variables();
+void inicializar_variables();
+void calcular_lambdas();
+void calcular_velocidades();
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
 /*  Funciones del archivo calculo_presion.c                                      */
@@ -179,3 +192,5 @@ void    esquina_superior_derecha_l();
 void    esquina_inferior_izquierda_l();
 void    esquina_inferior_derecha_l();
 void    copiar_l();
+void calculo_velocidad_alternativa();
+void copiar_velocidades();

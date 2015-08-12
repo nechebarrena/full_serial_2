@@ -37,8 +37,8 @@ void recinto_interno(){
       flujo_2 =  lambda_t_2[TAM_C*f + c]*presion[TAM_C*f + (c+1)] ;
       flujo_3 =  lambda_t_3[TAM_C*f + c]*presion[TAM_C*(f-1) + (c)] ;
       flujo_4 =  lambda_t_4[TAM_C*f + c]*presion[TAM_C*(f+1) + (c)] ;
-      flujo_5 = termino_presion_capilar[TAM_C*f + c] + ( ( Q_W[TAM_C*f + c] + Q_N[TAM_C*f + c] )/(1.0*TAM_C*TAM_C) ) ;
-      suma_lambdas= lambda_t_1[TAM_C*f + c] + lambda_t_2[TAM_C*f + c] + lambda_t_3[TAM_C*f + c] + lambda_t_4[TAM_C*f + c] ;
+      flujo_5 = termino_presion_capilar[TAM_C*f + c] + ( ( Q_W[TAM_C*f + c] + Q_N[TAM_C*f + c] )/(1.0*TAM_C) ) ;
+      suma_lambdas= lambda_t_1[TAM_C*f + c] + lambda_t_2[TAM_C*f + c] + lambda_t_3[TAM_C*f + c] + lambda_t_4[TAM_C*f + c] + cachito ;
       presion_N[TAM_C*f + c]= (flujo_1 + flujo_2 + flujo_3 +  flujo_4 + flujo_5)/(suma_lambdas);
     }
   }
@@ -69,8 +69,8 @@ void borde_izquierdo(){
       flujo_2 =  lambda_t_2[TAM_C*f + c]*presion[TAM_C*f + (c+1)] ;
       flujo_3 =  lambda_t_3[TAM_C*f + c]*presion[TAM_C*(f-1) + (c)] ;
       flujo_4 =  lambda_t_4[TAM_C*f + c]*presion[TAM_C*(f+1) + (c)] ;
-      flujo_5 = termino_presion_capilar[TAM_C*f + c] + ( ( Q_W[TAM_C*f + c] + Q_N[TAM_C*f + c] )/(1.0*TAM_C*TAM_C) ) ;
-      suma_lambdas= lambda_t_1[TAM_C*f + c] + lambda_t_2[TAM_C*f + c] + lambda_t_3[TAM_C*f + c] + lambda_t_4[TAM_C*f + c] ;
+      flujo_5 = termino_presion_capilar[TAM_C*f + c] + ( ( Q_W[TAM_C*f + c] + Q_N[TAM_C*f + c] )/(1.0*TAM_C) ) ;
+      suma_lambdas= lambda_t_1[TAM_C*f + c] + lambda_t_2[TAM_C*f + c] + lambda_t_3[TAM_C*f + c] + lambda_t_4[TAM_C*f + c] + cachito ;
       presion_N[TAM_C*f + c]= (flujo_1 + flujo_2 + flujo_3 +  flujo_4 + flujo_5)/(suma_lambdas);
     
   }  
@@ -99,8 +99,8 @@ void borde_derecho(){
       flujo_2 =  0.0;//lambda_t_2[TAM_C*f + c]*presion[TAM_C*f + (c+1)] ;
       flujo_3 =  lambda_t_3[TAM_C*f + c]*presion[TAM_C*(f-1) + (c)] ;
       flujo_4 =  lambda_t_4[TAM_C*f + c]*presion[TAM_C*(f+1) + (c)] ;
-      flujo_5 = termino_presion_capilar[TAM_C*f + c] + ( ( Q_W[TAM_C*f + c] + Q_N[TAM_C*f + c] )/(1.0*TAM_C*TAM_C) ) ;
-      suma_lambdas= lambda_t_1[TAM_C*f + c] + lambda_t_2[TAM_C*f + c] + lambda_t_3[TAM_C*f + c] + lambda_t_4[TAM_C*f + c] ;
+      flujo_5 = termino_presion_capilar[TAM_C*f + c] + ( ( Q_W[TAM_C*f + c] + Q_N[TAM_C*f + c] )/(1.0*TAM_C) ) ;
+      suma_lambdas= lambda_t_1[TAM_C*f + c] + lambda_t_2[TAM_C*f + c] + lambda_t_3[TAM_C*f + c] + lambda_t_4[TAM_C*f + c] + cachito;
       presion_N[TAM_C*f + c]= (flujo_1 + flujo_2 + flujo_3 +  flujo_4 + flujo_5)/(suma_lambdas);
     
   }
@@ -130,8 +130,8 @@ void borde_superior(){
       flujo_2 =  lambda_t_2[TAM_C*f + c]*presion[TAM_C*f + (c+1)] ;
       flujo_3 = 0.0;//  lambda_t_3[TAM_C*f + c]*presion[TAM_C*(f-1) + (c)] ;
       flujo_4 =  lambda_t_4[TAM_C*f + c]*presion[TAM_C*(f+1) + (c)] ;
-      flujo_5 = termino_presion_capilar[TAM_C*f + c] + ( ( Q_W[TAM_C*f + c] + Q_N[TAM_C*f + c] )/(1.0*TAM_C*TAM_C) ) ;
-      suma_lambdas= lambda_t_1[TAM_C*f + c] + lambda_t_2[TAM_C*f + c] + lambda_t_3[TAM_C*f + c] + lambda_t_4[TAM_C*f + c] ;
+      flujo_5 = termino_presion_capilar[TAM_C*f + c] + ( ( Q_W[TAM_C*f + c] + Q_N[TAM_C*f + c] )/(1.0*TAM_C) ) ;
+      suma_lambdas= lambda_t_1[TAM_C*f + c] + lambda_t_2[TAM_C*f + c] + lambda_t_3[TAM_C*f + c] + lambda_t_4[TAM_C*f + c] + cachito;
       presion_N[TAM_C*f + c]= (flujo_1 + flujo_2 + flujo_3 +  flujo_4 + flujo_5)/(suma_lambdas);
     }
     
@@ -159,8 +159,8 @@ void borde_inferior(){
       flujo_2 =  lambda_t_2[TAM_C*f + c]*presion[TAM_C*f + (c+1)] ;
       flujo_3 =  lambda_t_3[TAM_C*f + c]*presion[TAM_C*(f-1) + (c)] ;
       flujo_4 =  0.0;//lambda_t_4[TAM_C*f + c]*presion[TAM_C*(f+1) + (c)] ;
-      flujo_5 = termino_presion_capilar[TAM_C*f + c] + ( ( Q_W[TAM_C*f + c] + Q_N[TAM_C*f + c] )/(1.0*TAM_C*TAM_C) ) ;
-      suma_lambdas= lambda_t_1[TAM_C*f + c] + lambda_t_2[TAM_C*f + c] + lambda_t_3[TAM_C*f + c] + lambda_t_4[TAM_C*f + c] ;
+      flujo_5 = termino_presion_capilar[TAM_C*f + c] + ( ( Q_W[TAM_C*f + c] + Q_N[TAM_C*f + c] )/(1.0*TAM_C) ) ;
+      suma_lambdas= lambda_t_1[TAM_C*f + c] + lambda_t_2[TAM_C*f + c] + lambda_t_3[TAM_C*f + c] + lambda_t_4[TAM_C*f + c] + cachito;
       presion_N[TAM_C*f + c]= (flujo_1 + flujo_2 + flujo_3 +  flujo_4 + flujo_5)/(suma_lambdas);
     }
   
@@ -186,8 +186,8 @@ void esquina_superior_izquierda(){
       flujo_2 =  lambda_t_2[TAM_C*f + c]*presion[TAM_C*f + (c+1)] ;
       flujo_3 = 0.0;// lambda_t_3[TAM_C*f + c]*presion[TAM_C*(f-1) + (c)] ;
       flujo_4 =  lambda_t_4[TAM_C*f + c]*presion[TAM_C*(f+1) + (c)] ;
-      flujo_5 = termino_presion_capilar[TAM_C*f + c] + ( ( Q_W[TAM_C*f + c] + Q_N[TAM_C*f + c] )/(1.0*TAM_C*TAM_C) ) ;
-      suma_lambdas= lambda_t_1[TAM_C*f + c] + lambda_t_2[TAM_C*f + c] + lambda_t_3[TAM_C*f + c] + lambda_t_4[TAM_C*f + c] ;
+      flujo_5 = termino_presion_capilar[TAM_C*f + c] + ( ( Q_W[TAM_C*f + c] + Q_N[TAM_C*f + c] )/(1.0*TAM_C) ) ;
+      suma_lambdas= lambda_t_1[TAM_C*f + c] + lambda_t_2[TAM_C*f + c] + lambda_t_3[TAM_C*f + c] + lambda_t_4[TAM_C*f + c] + cachito;
       presion_N[TAM_C*f + c]= (flujo_1 + flujo_2 + flujo_3 +  flujo_4 + flujo_5)/(suma_lambdas);
       //printf("\n Presion ==> flujo 2=%f      flujo 4=%f     flujo 5=%f\n",lambda_t_2[TAM_C*f + c]*(presion[TAM_C*f + (c+1)]-presion[TAM_C*f + (c)]),lambda_t_2[TAM_C*f + c]*(presion[TAM_C*(f+1) + (c)]-presion[TAM_C*f + (c)]),flujo_5);
 
@@ -214,8 +214,8 @@ void esquina_superior_derecha(){
       flujo_2 = 0.0;// lambda_t_2[TAM_C*f + c]*presion[TAM_C*f + (c+1)] ;
       flujo_3 = 0.0;//lambda_t_3[TAM_C*f + c]*presion[TAM_C*(f-1) + (c)] ;
       flujo_4 =  lambda_t_4[TAM_C*f + c]*presion[TAM_C*(f+1) + (c)] ;
-      flujo_5 = termino_presion_capilar[TAM_C*f + c] + ( ( Q_W[TAM_C*f + c] + Q_N[TAM_C*f + c] )/(1.0*TAM_C*TAM_C) ) ;
-      suma_lambdas= lambda_t_1[TAM_C*f + c] + lambda_t_2[TAM_C*f + c] + lambda_t_3[TAM_C*f + c] + lambda_t_4[TAM_C*f + c] ;
+      flujo_5 = termino_presion_capilar[TAM_C*f + c] + ( ( Q_W[TAM_C*f + c] + Q_N[TAM_C*f + c] )/(1.0*TAM_C) ) ;
+      suma_lambdas= lambda_t_1[TAM_C*f + c] + lambda_t_2[TAM_C*f + c] + lambda_t_3[TAM_C*f + c] + lambda_t_4[TAM_C*f + c] + cachito;
       presion_N[TAM_C*f + c]= (flujo_1 + flujo_2 + flujo_3 +  flujo_4 + flujo_5)/(suma_lambdas);
 
 }
@@ -240,8 +240,8 @@ void esquina_inferior_izquierda(){
       flujo_2 =  lambda_t_2[TAM_C*f + c]*presion[TAM_C*f + (c+1)] ;
       flujo_3 =  lambda_t_3[TAM_C*f + c]*presion[TAM_C*(f-1) + (c)] ;
       flujo_4 =  0.0;//lambda_t_4[TAM_C*f + c]*presion[TAM_C*(f+1) + (c)] ;
-      flujo_5 = termino_presion_capilar[TAM_C*f + c] + ( ( Q_W[TAM_C*f + c] + Q_N[TAM_C*f + c] )/(1.0*TAM_C*TAM_C) ) ;
-      suma_lambdas= lambda_t_1[TAM_C*f + c] + lambda_t_2[TAM_C*f + c] + lambda_t_3[TAM_C*f + c] + lambda_t_4[TAM_C*f + c] ;
+      flujo_5 = termino_presion_capilar[TAM_C*f + c] + ( ( Q_W[TAM_C*f + c] + Q_N[TAM_C*f + c] )/(1.0*TAM_C) ) ;
+      suma_lambdas= lambda_t_1[TAM_C*f + c] + lambda_t_2[TAM_C*f + c] + lambda_t_3[TAM_C*f + c] + lambda_t_4[TAM_C*f + c] + cachito;
       presion_N[TAM_C*f + c]= (flujo_1 + flujo_2 + flujo_3 +  flujo_4 + flujo_5)/(suma_lambdas);
 
 }
@@ -267,8 +267,8 @@ void esquina_inferior_derecha(){
       flujo_2 = 0.0;//  lambda_t_2[TAM_C*f + c]*presion[TAM_C*f + (c+1)] ;
       flujo_3 =  lambda_t_3[TAM_C*f + c]*presion[TAM_C*(f-1) + (c)] ;
       flujo_4 =  0.0;//lambda_t_4[TAM_C*f + c]*presion[TAM_C*(f+1) + (c)] ;
-      flujo_5 = termino_presion_capilar[TAM_C*f + c] + ( ( Q_W[TAM_C*f + c] + Q_N[TAM_C*f + c] )/(1.0*TAM_C*TAM_C)) ;
-      suma_lambdas= lambda_t_1[TAM_C*f + c] + lambda_t_2[TAM_C*f + c] + lambda_t_3[TAM_C*f + c] + lambda_t_4[TAM_C*f + c] ;
+      flujo_5 = termino_presion_capilar[TAM_C*f + c] + ( ( Q_W[TAM_C*f + c] + Q_N[TAM_C*f + c] )/(1.0*TAM_C)) ;
+      suma_lambdas= lambda_t_1[TAM_C*f + c] + lambda_t_2[TAM_C*f + c] + lambda_t_3[TAM_C*f + c] + lambda_t_4[TAM_C*f + c] + cachito;
       presion_N[TAM_C*f + c]= (flujo_1 + flujo_2 + flujo_3 +  flujo_4 + flujo_5)/(suma_lambdas);
 
   
