@@ -84,14 +84,14 @@ void inicializar_K(){
     }
   }
  
- /*
-  for(f=0 ; f<(TAM_F/5) ; f++){
-  c=(TAM_C/6);
+ 
+  for(f=0 ; f<(TAM_F/3) ; f++){
+  c=(TAM_C/3);
   K[TAM_C*f + c]= 0.0 ;
   K[TAM_C*f + c+1]= 0.0 ; 
   K[TAM_C*f + c+2]= 0.0 ;
   }
-  */
+  
  
  /*
    for(f=0 ; f<TAM_F ; f++){
