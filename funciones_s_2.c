@@ -83,6 +83,13 @@ void inicializar_K(){
       K[TAM_C*f + c]= 1.0 ; 
     }
   }
+ /*
+   for(f=25 ; f<40 ; f++){
+    for(c=25 ; c<40 ; c++){
+      K[TAM_C*f + c]= 0.0 ; 
+    }
+  }
+ */
  
  
   for(f=0 ; f<(TAM_F/3) ; f++){
@@ -91,7 +98,7 @@ void inicializar_K(){
   K[TAM_C*f + c+1]= 0.0 ; 
   K[TAM_C*f + c+2]= 0.0 ;
   }
-  
+ 
  
  /*
    for(f=0 ; f<TAM_F ; f++){
@@ -199,7 +206,7 @@ void inicializar_saturacion(){
   if(CB==0){
       for(f=0 ; f<TAM_F ; f++){
 	for(c=0 ; c<TAM_C ; c++){
-	  saturacion[TAM_C*f + c]= 0.9*exp( -(c*c)/(alfa) ) + 0.1 ; 
+	  saturacion[TAM_C*f + c]= 1.0*exp( -(c*c)/(alfa) ) + 0.0 ; 
 	}
       }
 

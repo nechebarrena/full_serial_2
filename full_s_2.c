@@ -17,8 +17,8 @@ int main(void){
   tiempo_total=delta_t*iteraciones;
     
   t=1;
-  while(saturacion[TAM_C*99 + 99]<0.05){
-  //for(t=1 ; t<= iteraciones ; t++){ // Inicio del FOR
+  //while(saturacion[TAM_C*99 + 99]<0.05){
+  for(t=1 ; t<= iteraciones ; t++){ // Inicio del FOR
   
   calcular_lambdas();
   t_aux=0;
@@ -48,7 +48,7 @@ int main(void){
   calculo_saturacion();
   
   printf("\n Tiempo= %f/%f [ %.3f %%]  iteraciones= %i \n",t*delta_t,tiempo_total,(t*delta_t*100)/(tiempo_total),t_aux);
-  t=t+1;
+  //t=t+1;
   }  // Fin del FOR  
   
   

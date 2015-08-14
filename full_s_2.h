@@ -10,23 +10,23 @@
 /* Definicion de parametros globales                                             */
 #define TAM_C 100
 #define TAM_F 100
-#define CB 1   // 0 para una condicion de borde tipo canal y 1 para una tipo FQS
+#define CB 0   // 0 para una condicion de borde tipo canal y 1 para una tipo FQS
 
 #define mu_w 1.0
-#define mu_n 10.0
+#define mu_n 15.0
 
-#define q_n 10.0
-#define q_w 10.0
+#define q_n 0.1
+#define q_w 0.1
 #define po 0.0
 
 #define cachito 0.0000000001
 #define error 0.00000000001
-#define error_1 0.000001
+#define error_1 0.0000001
 
 #define courant 0.1
 #define PI 1.0
 
-#define iteraciones 2500000
+#define iteraciones 170000
 
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////

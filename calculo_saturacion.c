@@ -2,7 +2,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void calculo_saturacion(){
-  
+  int k=0;
+
+  if(CB==1){
   recinto_interno_s();
   borde_izquierdo_s();
   borde_derecho_s();
@@ -13,6 +15,20 @@ void calculo_saturacion(){
   esquina_superior_derecha_s();
   esquina_inferior_izquierda_s();
   esquina_inferior_derecha_s();
+  }
+  else if(CB==0){
+  recinto_interno_s(); 
+  borde_derecho_s();
+  borde_superior_s();
+  borde_inferior_s();
+  esquina_superior_derecha_s();
+  esquina_inferior_derecha_s();
+  for(k=0 ; k< TAM_F ; k++){
+  saturacion_N[TAM_C*k + 0]=1.0;  
+  }
+   
+  }
+ 
   copiar_s();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
