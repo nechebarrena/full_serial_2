@@ -17,10 +17,13 @@ int main(void){
   tiempo_total=delta_t*iteraciones;
     
   t=1;
-  //while(saturacion[TAM_C*99 + 99]<0.05){
-  for(t=1 ; t<= iteraciones ; t++){ // Inicio del FOR
+  while(saturacion[TAM_C*(TAM_C/2) + (TAM_C/3)]<0.05){
+  //for(t=1 ; t<= iteraciones ; t++){ // Inicio del FOR
   
   calcular_lambdas();
+  calcular_presion_capilar();
+  calcular_termino_presion_capilar();
+  
   t_aux=0;
   diferencia=0.001;
   
@@ -33,7 +36,7 @@ int main(void){
   
   
   if(t>1){  // Inicio del IF ....... Para todas las veces restantes
-   while(diferencia>error_1 && t_aux<100){ 
+   while(diferencia>error_1 && t_aux<50){ 
     calculo_presion();
     t_aux = t_aux +1;
    }
@@ -48,7 +51,7 @@ int main(void){
   calculo_saturacion();
   
   printf("\n Tiempo= %f/%f [ %.3f %%]  iteraciones= %i \n",t*delta_t,tiempo_total,(t*delta_t*100)/(tiempo_total),t_aux);
-  //t=t+1;
+  t=t+1;
   }  // Fin del FOR  
   
   

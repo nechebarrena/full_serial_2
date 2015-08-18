@@ -83,22 +83,23 @@ void inicializar_K(){
       K[TAM_C*f + c]= 1.0 ; 
     }
   }
- /*
-   for(f=25 ; f<40 ; f++){
-    for(c=25 ; c<40 ; c++){
+ 
+   for(f=20 ; f<25 ; f++){
+    for(c=20 ; c<25 ; c++){
       K[TAM_C*f + c]= 0.0 ; 
     }
   }
- */
  
  
+ 
+ /*
   for(f=0 ; f<(TAM_F/3) ; f++){
   c=(TAM_C/3);
   K[TAM_C*f + c]= 0.0 ;
   K[TAM_C*f + c+1]= 0.0 ; 
   K[TAM_C*f + c+2]= 0.0 ;
   }
- 
+ */
  
  /*
    for(f=0 ; f<TAM_F ; f++){
