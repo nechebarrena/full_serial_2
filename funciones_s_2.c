@@ -83,15 +83,80 @@ void inicializar_K(){
       K[TAM_C*f + c]= 1.0 ; 
     }
   }
+
+  
  
-   for(f=20 ; f<25 ; f++){
-    for(c=20 ; c<25 ; c++){
+   for(f=5 ; f<9 ; f++){
+    for(c=15 ; c<20 ; c++){
+      K[TAM_C*f + c]= 0.0 ; 
+    }
+  }
+ 
+   for(f=14 ; f<22 ; f++){
+    for(c=15 ; c<20 ; c++){
+      K[TAM_C*f + c]= 0.0 ; 
+    }
+  }
+  
+     for(f=23 ; f<24 ; f++){
+    for(c=15 ; c<20 ; c++){
+      K[TAM_C*f + c]= 0.0 ; 
+    }
+  }
+  
+  
+    for(f=27 ; f<31 ; f++){
+    for(c=15 ; c<20 ; c++){
+      K[TAM_C*f + c]= 0.0 ; 
+    }
+  }
+ 
+   for(f=35 ; f<42 ; f++){
+    for(c=15 ; c<20 ; c++){
+      K[TAM_C*f + c]= 0.0 ; 
+    }
+  }
+  
+     for(f=45 ; f<48 ; f++){
+    for(c=15 ; c<20 ; c++){
       K[TAM_C*f + c]= 0.0 ; 
     }
   }
  
  
+    for(f=57 ; f<60 ; f++){
+    for(c=15 ; c<20 ; c++){
+      K[TAM_C*f + c]= 0.0 ; 
+    }
+  }
  
+   for(f=63 ; f<67 ; f++){
+    for(c=15 ; c<20 ; c++){
+      K[TAM_C*f + c]= 0.0 ; 
+    }
+  }
+  
+     for(f=77 ; f<82 ; f++){
+    for(c=15 ; c<20 ; c++){
+      K[TAM_C*f + c]= 0.0 ; 
+    }
+  }
+ 
+    for(f=85 ; f<90 ; f++){
+    for(c=15 ; c<20 ; c++){
+      K[TAM_C*f + c]= 0.0 ; 
+    }
+  }
+ 
+   for(f=93 ; f<97 ; f++){
+    for(c=15 ; c<20 ; c++){
+      K[TAM_C*f + c]= 0.0 ; 
+    }
+  }
+  
+
+ 
+  
  /*
   for(f=0 ; f<(TAM_F/3) ; f++){
   c=(TAM_C/3);
@@ -196,7 +261,7 @@ void inicializar_saturacion(){
   
   int c=0;
   int f=0;
-  double alfa=40;
+  double alfa=40 ;
   for(f=0 ; f<TAM_F ; f++){
     for(c=0 ; c<TAM_C ; c++){
       saturacion[TAM_C*f + c]= 0.0 ; 
@@ -207,7 +272,7 @@ void inicializar_saturacion(){
   if(CB==0){
       for(f=0 ; f<TAM_F ; f++){
 	for(c=0 ; c<TAM_C ; c++){
-	  saturacion[TAM_C*f + c]= 1.0*exp( -(c*c)/(alfa) ) + 0.0 ; 
+	  saturacion[TAM_C*f + c]= 1.0*exp( -(c*c)/(alfa ) ) + 0.0 ; 
 	}
       }
 
@@ -1104,7 +1169,7 @@ void calculo_velocidad(){
   
     for(f=0 ; f<(TAM_F) ; f++){
       for(c=0 ; c<(TAM_C) ; c++){
-	velocidad[TAM_C*f + c]= pow(U_t_1[TAM_C*f + c]*U_t_1[TAM_C*f + c] + U_t_3[TAM_C*f + c]*U_t_3[TAM_C*f + c],0.5)  ;
+	velocidad[TAM_C*f + c]= pow(U_t_2[TAM_C*f + c]*U_t_2[TAM_C*f + c] + U_t_4[TAM_C*f + c]*U_t_4[TAM_C*f + c],0.5)  ;
       }
     }
     

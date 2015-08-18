@@ -17,8 +17,8 @@ int main(void){
   tiempo_total=delta_t*iteraciones;
     
   t=1;
-  while(saturacion[TAM_C*(TAM_C/2) + (TAM_C/3)]<0.05){
-  //for(t=1 ; t<= iteraciones ; t++){ // Inicio del FOR
+  //while(saturacion[TAM_C*44 + 23]<0.05){
+  for(t=1 ; t<= iteraciones ; t++){ // Inicio del FOR
   
   calcular_lambdas();
   calcular_presion_capilar();
@@ -49,9 +49,10 @@ int main(void){
   calculo_velocidad();
   calcular_f_w();
   calculo_saturacion();
-  
+  calculo_integral();
+  integral_total[t]=*integral;
   printf("\n Tiempo= %f/%f [ %.3f %%]  iteraciones= %i \n",t*delta_t,tiempo_total,(t*delta_t*100)/(tiempo_total),t_aux);
-  t=t+1;
+  //t=t+1;
   }  // Fin del FOR  
   
   
@@ -59,6 +60,7 @@ int main(void){
   printf("\n \n \n Delta_T = %.15f    Tiempo Total=%.15f\n \n",delta_t,tiempo_total);
   printf("\n \n \n.... FIN ....\n \n");
   
+  guardar_v(integral_total,iteraciones);
   guardar_1(saturacion);
   guardar_2(presion);
   
