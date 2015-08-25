@@ -1,5 +1,34 @@
 #include "full_s_2.h"
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void guardar_o(double *matriz,int num){    // la funcion guardar graba los datos de matriz en un archivo llamado salia-1.dat
+  
+  FILE *archivo;   // creo el archivo
+  char nombre[12];
+  char ext[12]=".dat";
+  
+  
+  
+  sprintf(nombre,"%d",num);
+  int largo = strlen(nombre) ;
+  strcat(nombre,ext);
+  //printf("\n  el tam del string es =%i \n",largo);
+ 
+  archivo= fopen(nombre,"w+"); //abro el archivo y le asigno el nombre
+  int f=0; 
+  int c=0;
+  
+  for(f=0 ; f<TAM_F ; f++){ //barro todas las filas de la matriz
+    for(c=0 ; c<TAM_C ; c++){ //barro todas las columnas de la matriz
+      fprintf(archivo,"%.15f	",matriz[TAM_C*f + c]); //guardo un dato y le doy enter
+    }
+      fprintf(archivo,"\n"); //cuando termino una fila le doy un enter
+  }
+  
+  
+  fclose(archivo); //cierro el archivo
+}
+// El formato con el que guardo los datos es [ fila_i -renglon vacio- fila_i+1 -renglon vacio- fila_i+2 ..... ]   
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void guardar_v(double *vector,int tam){    // la funcion guardar graba los datos de matriz en un archivo llamado salia-1.dat
   
   FILE *archivo;   // creo el archivo
@@ -84,75 +113,138 @@ void inicializar_K(){
     }
   }
 
-  
+/*  
  
-   for(f=5 ; f<9 ; f++){
+   for(f=6 ; f<12 ; f++){
     for(c=15 ; c<20 ; c++){
       K[TAM_C*f + c]= 0.0 ; 
     }
   }
  
-   for(f=14 ; f<22 ; f++){
-    for(c=15 ; c<20 ; c++){
-      K[TAM_C*f + c]= 0.0 ; 
-    }
-  }
-  
-     for(f=23 ; f<24 ; f++){
+   for(f=16 ; f<20 ; f++){
     for(c=15 ; c<20 ; c++){
       K[TAM_C*f + c]= 0.0 ; 
     }
   }
   
-  
-    for(f=27 ; f<31 ; f++){
-    for(c=15 ; c<20 ; c++){
-      K[TAM_C*f + c]= 0.0 ; 
-    }
-  }
- 
-   for(f=35 ; f<42 ; f++){
+     for(f=25 ; f<30 ; f++){
     for(c=15 ; c<20 ; c++){
       K[TAM_C*f + c]= 0.0 ; 
     }
   }
   
-     for(f=45 ; f<48 ; f++){
+  
+    for(f=36 ; f<40 ; f++){
     for(c=15 ; c<20 ; c++){
       K[TAM_C*f + c]= 0.0 ; 
     }
   }
  
- 
-    for(f=57 ; f<60 ; f++){
-    for(c=15 ; c<20 ; c++){
-      K[TAM_C*f + c]= 0.0 ; 
-    }
-  }
- 
-   for(f=63 ; f<67 ; f++){
+   for(f=44 ; f<49 ; f++){
     for(c=15 ; c<20 ; c++){
       K[TAM_C*f + c]= 0.0 ; 
     }
   }
   
-     for(f=77 ; f<82 ; f++){
+  
+     for(f=55 ; f<61 ; f++){
     for(c=15 ; c<20 ; c++){
       K[TAM_C*f + c]= 0.0 ; 
     }
   }
  
-    for(f=85 ; f<90 ; f++){
+ 
+    for(f=65 ; f<70 ; f++){
     for(c=15 ; c<20 ; c++){
       K[TAM_C*f + c]= 0.0 ; 
     }
   }
  
-   for(f=93 ; f<97 ; f++){
+   for(f=74 ; f<79 ; f++){
     for(c=15 ; c<20 ; c++){
       K[TAM_C*f + c]= 0.0 ; 
     }
   }
+  
+     for(f=86 ; f<90 ; f++){
+    for(c=15 ; c<20 ; c++){
+      K[TAM_C*f + c]= 0.0 ; 
+    }
+  }
+ 
+    for(f=94 ; f<99 ; f++){
+    for(c=15 ; c<20 ; c++){
+      K[TAM_C*f + c]= 0.0 ; 
+    }
+  }
+ 
+
+ 
+ 
+   for(f=104 ; f<110 ; f++){
+    for(c=15 ; c<20 ; c++){
+      K[TAM_C*f + c]= 0.0 ; 
+    }
+  }
+ 
+   for(f=115 ; f<120 ; f++){
+    for(c=15 ; c<20 ; c++){
+      K[TAM_C*f + c]= 0.0 ; 
+    }
+  }
+  
+     for(f=125 ; f<129 ; f++){
+    for(c=15 ; c<20 ; c++){
+      K[TAM_C*f + c]= 0.0 ; 
+    }
+  }
+  
+  
+    for(f=136 ; f<140 ; f++){
+    for(c=15 ; c<20 ; c++){
+      K[TAM_C*f + c]= 0.0 ; 
+    }
+  }
+ 
+   for(f=144 ; f<149 ; f++){
+    for(c=15 ; c<20 ; c++){
+      K[TAM_C*f + c]= 0.0 ; 
+    }
+  }
+  
+  
+     for(f=153 ; f<160 ; f++){
+    for(c=15 ; c<20 ; c++){
+      K[TAM_C*f + c]= 0.0 ; 
+    }
+  }
+ 
+ 
+    for(f=165 ; f<170 ; f++){
+    for(c=15 ; c<20 ; c++){
+      K[TAM_C*f + c]= 0.0 ; 
+    }
+  }
+ 
+   for(f=174 ; f<179 ; f++){
+    for(c=15 ; c<20 ; c++){
+      K[TAM_C*f + c]= 0.0 ; 
+    }
+  }
+  
+     for(f=186 ; f<190 ; f++){
+    for(c=15 ; c<20 ; c++){
+      K[TAM_C*f + c]= 0.0 ; 
+    }
+  }
+ 
+    for(f=193 ; f<196 ; f++){
+    for(c=15 ; c<20 ; c++){
+      K[TAM_C*f + c]= 0.0 ; 
+    }
+  }
+ 
+ */
   
 
  
@@ -278,6 +370,213 @@ void inicializar_saturacion(){
 
   }
   
+////////////////////////////////////////////////////////////////
+    if(CB==0){
+      for(f=8 ; f<11 ; f++){
+	for(c=12 ; c<15 ; c++){
+	  saturacion[TAM_C*f + c + 3]= saturacion[TAM_C*f + c ] ;
+	  saturacion[TAM_C*f + c ]= saturacion[TAM_C*f + c-1 ];
+	}
+      }
+
+  }
+  
+      if(CB==0){
+      for(f=18 ; f<22 ; f++){
+	for(c=12 ; c<18 ; c++){
+	  saturacion[TAM_C*f + c + 6]= saturacion[TAM_C*f + c ] ;
+	  saturacion[TAM_C*f + c ]= saturacion[TAM_C*f + c-1 ];
+	}
+      }
+
+  }
+  
+      if(CB==0){
+      for(f=30 ; f<33 ; f++){
+	for(c=12 ; c<17 ; c++){
+	  saturacion[TAM_C*f + c + 5]= saturacion[TAM_C*f + c ] ;
+	  saturacion[TAM_C*f + c ]= saturacion[TAM_C*f + c-1 ];
+	}
+      }
+
+  }
+  
+  
+      if(CB==0){
+      for(f=38 ; f<42 ; f++){
+	for(c=12 ; c<16 ; c++){
+	  saturacion[TAM_C*f + c + 4]= saturacion[TAM_C*f + c ] ;
+	  saturacion[TAM_C*f + c ]= saturacion[TAM_C*f + c-1 ];
+	}
+      }
+
+  }
+  
+  
+  
+  
+      if(CB==0){
+      for(f=49 ; f<55 ; f++){
+	for(c=12 ; c<15 ; c++){
+	  saturacion[TAM_C*f + c + 3]= saturacion[TAM_C*f + c ] ;
+	  saturacion[TAM_C*f + c ]= saturacion[TAM_C*f + c-1 ];
+	}
+      }
+
+  }
+  
+      if(CB==0){
+      for(f=63 ; f<69 ; f++){
+	for(c=12 ; c<16 ; c++){
+	  saturacion[TAM_C*f + c + 4]= saturacion[TAM_C*f + c ] ;
+	  saturacion[TAM_C*f + c ]= saturacion[TAM_C*f + c-1 ];
+	}
+      }
+
+  }
+  
+      if(CB==0){
+      for(f=75 ; f<81 ; f++){
+	for(c=12 ; c<17 ; c++){
+	  saturacion[TAM_C*f + c + 5]= saturacion[TAM_C*f + c ] ;
+	  saturacion[TAM_C*f + c ]= saturacion[TAM_C*f + c-1 ];
+	}
+      }
+
+  }
+  
+      if(CB==0){
+      for(f=89 ; f<93 ; f++){
+	for(c=12 ; c<16 ; c++){
+	  saturacion[TAM_C*f + c + 4]= saturacion[TAM_C*f + c ] ;
+	  saturacion[TAM_C*f + c ]= saturacion[TAM_C*f + c-1 ];
+	}
+      }
+
+  }
+  /*
+      if(CB==0){
+      for(f=85 ; f<89 ; f++){
+	for(c=12 ; c<14 ; c++){
+	  saturacion[TAM_C*f + c + 2]= saturacion[TAM_C*f + c ] ;
+	  saturacion[TAM_C*f + c ]= saturacion[TAM_C*f + c-1 ];
+	}
+      }
+
+  }
+  
+  
+      if(CB==0){
+      for(f=95 ; f<99 ; f++){
+	for(c=12 ; c<13 ; c++){
+	  saturacion[TAM_C*f + c + 1]= saturacion[TAM_C*f + c ] ;
+	  saturacion[TAM_C*f + c ]= saturacion[TAM_C*f + c-1 ];
+	}
+      }
+
+  }
+  
+      if(CB==0){
+      for(f=106 ; f<110 ; f++){
+	for(c=12 ; c<13 ; c++){
+	  saturacion[TAM_C*f + c + 1]= saturacion[TAM_C*f + c ] ;
+	  saturacion[TAM_C*f + c ]= saturacion[TAM_C*f + c-1 ];
+	}
+      }
+
+  }
+  
+      if(CB==0){
+      for(f=118 ; f<120 ; f++){
+	for(c=12 ; c<13 ; c++){
+	  saturacion[TAM_C*f + c + 1]= saturacion[TAM_C*f + c ] ;
+	  saturacion[TAM_C*f + c ]= saturacion[TAM_C*f + c-1 ];
+	}
+      }
+
+  }
+  
+      if(CB==0){
+      for(f=125 ; f<129 ; f++){
+	for(c=12 ; c<13 ; c++){
+	  saturacion[TAM_C*f + c + 1]= saturacion[TAM_C*f + c ] ;
+	  saturacion[TAM_C*f + c ]= saturacion[TAM_C*f + c-1 ];
+	}
+      }
+
+  }
+  
+  
+  
+      if(CB==0){
+      for(f=136 ; f<140 ; f++){
+	for(c=12 ; c<14 ; c++){
+	  saturacion[TAM_C*f + c + 2]= saturacion[TAM_C*f + c ] ;
+	  saturacion[TAM_C*f + c ]= saturacion[TAM_C*f + c-1 ];
+	}
+      }
+
+  }
+  
+      if(CB==0){
+      for(f=145 ; f<149 ; f++){
+	for(c=12 ; c<13 ; c++){
+	  saturacion[TAM_C*f + c + 1]= saturacion[TAM_C*f + c ] ;
+	  saturacion[TAM_C*f + c ]= saturacion[TAM_C*f + c-1 ];
+	}
+      }
+
+  }
+  
+      if(CB==0){
+      for(f=160 ; f<162 ; f++){
+	for(c=12 ; c<13 ; c++){
+	  saturacion[TAM_C*f + c + 1]= saturacion[TAM_C*f + c ] ;
+	  saturacion[TAM_C*f + c ]= saturacion[TAM_C*f + c-1 ];
+	}
+      }
+
+  }
+  
+      if(CB==0){
+      for(f=168 ; f<172 ; f++){
+	for(c=12 ; c<13 ; c++){
+	  saturacion[TAM_C*f + c + 1]= saturacion[TAM_C*f + c ] ;
+	  saturacion[TAM_C*f + c ]= saturacion[TAM_C*f + c-1 ];
+	}
+      }
+      }
+      
+      if(CB==0){
+      for(f=180 ; f<183 ; f++){
+	for(c=12 ; c<14 ; c++){
+	  saturacion[TAM_C*f + c + 2]= saturacion[TAM_C*f + c ] ;
+	  saturacion[TAM_C*f + c ]= saturacion[TAM_C*f + c-1 ];
+	}
+      }
+      }
+      
+      
+      if(CB==0){
+      for(f=189 ; f<192 ; f++){
+	for(c=12 ; c<13 ; c++){
+	  saturacion[TAM_C*f + c + 1]= saturacion[TAM_C*f + c ] ;
+	  saturacion[TAM_C*f + c ]= saturacion[TAM_C*f + c-1 ];
+	}
+      }
+      }
+      
+      
+  
+ */ 
+  
+  
+////////////////////////////////////////////////////////////////  
+  
+  
+  
+  
+  
   
   
   if(CB==1){
@@ -352,6 +651,7 @@ void calcular_lambda_t(){
   for(f=0 ; f<TAM_F ; f++){
     for(c=0 ; c<TAM_C ; c++){
       lambda_t[TAM_C*f + c]= lambda_n[TAM_C*f + c] + lambda_w[TAM_C*f + c]   ; 
+      //printf("\n fila =%i  columna=%i lambda total = %f \n",f,c,lambda_t[TAM_C*f + c]);
     }
   }
 }
@@ -595,7 +895,8 @@ void calcular_presion_capilar(){
   
   for(f=0 ; f<TAM_F ; f++){
     for(c=0 ; c<TAM_C ; c++){
-      presion_capilar[TAM_C*f + c]= -po*log(saturacion[TAM_C*f + c])   ; 
+      presion_capilar[TAM_C*f + c]= -po*log(saturacion[TAM_C*f + c] + cachito)   ; 
+      //printf("\n fila=%i columna=%i    po=%f  log=%f   total=%f   saturacion=%.32f",f,c,-po,log(saturacion[TAM_C*f + c]+cachito),-po*log(saturacion[TAM_C*f + c]+cachito),saturacion[TAM_C*f + c]);
     }
   }
 }
@@ -618,6 +919,7 @@ void calcular_termino_presion_capilar(){
       flujo_4 = lambda_d_4[TAM_C*f + c]*(presion_capilar[TAM_C*(f+1) + (c)] - presion_capilar[TAM_C*f + c]);
       
       termino_presion_capilar[TAM_C*f + c]=  0.5*( flujo_1 + flujo_2 + flujo_3 +  flujo_4)  ; 
+      //printf("\nfila=%i columna=%i termino presion capilar =%f  =%f =%f =%f =%f\n",f,c,termino_presion_capilar[TAM_C*f + c],(presion_capilar[TAM_C*f + (c-1)] - presion_capilar[TAM_C*f + c]),lambda_d_2[TAM_C*f + c],lambda_d_3[TAM_C*f + c],lambda_d_4[TAM_C*f + c]);
     }
   }
 
@@ -1068,7 +1370,7 @@ void calcular_lambda_t_1_2_3_4_A(){
       lambda_t_2[TAM_C*f + c]= ( lambda_t[TAM_C*(f) + (c+1)] + lambda_t[TAM_C*f + c]    )*0.5 ; 
       lambda_t_3[TAM_C*f + c]= ( lambda_t[TAM_C*(f-1) + (c)] + lambda_t[TAM_C*f + c]    )*0.5 ;
       lambda_t_4[TAM_C*f + c]= ( lambda_t[TAM_C*(f+1) + (c)] + lambda_t[TAM_C*f + c]    )*0.5 ;
-      
+      //printf("\n fila=%i columna=%i   lambda total 2 =%f",f,c,lambda_t_2[TAM_C*f + c]);
       
       
     }
@@ -1325,6 +1627,26 @@ void calcular_velocidades(){
   calcular_U_n_1_2_3_4();
   calcular_U_t_1_2_3_4();
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void control_bandera(int columna){
+  
+  int f=0;
+  int c=0;
+  //c=control;
+  c=columna;
+  
+      for(f=0 ; f<(TAM_F-1) ; f++){
+       if(saturacion[TAM_C*f + (c)]>0.01){
+	 bandera=1;
+      }
+    }
+    
+  
+  
+}
+
 
 
 

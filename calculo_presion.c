@@ -40,6 +40,7 @@ void recinto_interno(){
       flujo_5 = termino_presion_capilar[TAM_C*f + c] + ( ( Q_W[TAM_C*f + c] + Q_N[TAM_C*f + c] )/(1.0*TAM_C) ) ;
       suma_lambdas= lambda_t_1[TAM_C*f + c] + lambda_t_2[TAM_C*f + c] + lambda_t_3[TAM_C*f + c] + lambda_t_4[TAM_C*f + c] + cachito ;
       presion_N[TAM_C*f + c]= (flujo_1 + flujo_2 + flujo_3 +  flujo_4 + flujo_5)/(suma_lambdas);
+      //printf("\n fila = %i   columna = %i  flujo 5=%f  termino presion =%f caudales=%f \n  ",f,c,flujo_5,termino_presion_capilar[TAM_C*f + c],( ( Q_W[TAM_C*f + c] + Q_N[TAM_C*f + c] )/(1.0*TAM_C) ) );
     }
   }
   
