@@ -57,14 +57,14 @@ int main(void){
   
   control_bandera(bandera_columna);
   if(bandera==1){
-    guardar_o(saturacion,bandera_columna);
+    guardar_o(presion,bandera_columna);
     bandera_columna=bandera_columna +1;
     
   }
   
   bandera=0;
   
-  control_bandera(290);
+  control_bandera(control);
   }  // Fin del FOR  
   
   
