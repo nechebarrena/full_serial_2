@@ -18,7 +18,7 @@
 
 #define q_n 0.1
 #define q_w 0.1
-#define po 1 // el grafico esta con 0.5
+#define po 0.0 // el grafico esta con 0.5
 
 #define cachito 0.0000000001
 #define error 0.0000000001
@@ -29,7 +29,7 @@
 
 #define iteraciones 10000000
 
-#define control 95
+#define control 60
 
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
@@ -138,6 +138,7 @@ void calcular_lambda_t_1_2_3_4();
 void calcular_lambda_t_1_2_3_4_A();
 
 void calcular_lambda_d_1_2_3_4();
+void calcular_lambda_d_1_2_3_4_C();
 void calcular_presion_capilar();
 void calcular_termino_presion_capilar();
 void calculo_diferencia();
