@@ -9,8 +9,8 @@
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
 /* Definicion de parametros globales                                             */
-#define TAM_C 300
-#define TAM_F 100
+#define TAM_C 100
+#define TAM_F 50
 #define CB 0   // 0 para una condicion de borde tipo canal y 1 para una tipo FQS
 
 #define mu_w 1.0
@@ -18,10 +18,10 @@
 
 #define q_n 0.1
 #define q_w 0.1
-#define po 0 // el grafico esta con 0.5
+#define po 1 // el grafico esta con 0.5
 
 #define cachito 0.0000000001
-#define error 0.00000000001
+#define error 0.0000000001
 #define error_1 0.0000001
 
 #define courant 0.1
@@ -29,7 +29,7 @@
 
 #define iteraciones 10000000
 
-#define control 150
+#define control 95
 
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////

@@ -413,7 +413,7 @@ void inicializar_saturacion(){
   }
   
   
-  
+  /*
   
       if(CB==0){
       for(f=49 ; f<55 ; f++){
