@@ -133,7 +133,7 @@ void calcular_krw();
 void calcular_krn();
 void calcular_lambda_t();
 void calcular_lambda_d();
-void calcular_lambda_t_1_2_3_4();
+void calcular_lambda_t_1_2_3_4_C();
 
 void calcular_lambda_t_1_2_3_4_A();
 

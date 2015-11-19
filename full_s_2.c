@@ -24,6 +24,9 @@ int main(void){
   tiempo_total=delta_t*iteraciones;
   bandera=0;  
   t=1;
+  
+  
+  
 //////////////////////////////////////////////////////////////////////////////////////////////////////    
   while(bandera==0){
   //for(t=1 ; t<= iteraciones ; t++){ // Inicio del FOR
@@ -79,6 +82,18 @@ int main(void){
   guardar_1(presion_capilar);
   guardar_2(presion);
 //////////////////////////////////////////////////////////////////////////////////////////////////////    
+  
+  
+  
+  
+  /*
+  calcular_lambdas();
+  guardar_o(lambda_d_1,1);
+  guardar_o(lambda_d_2,2);
+  guardar_o(lambda_d_3,3);
+  guardar_o(lambda_d_4,4);
+  */
+  
   
   return 0;
 }
