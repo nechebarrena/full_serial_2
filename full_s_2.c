@@ -47,7 +47,7 @@ int main(void){
   
   
   if(t>1){  // Inicio del IF ....... Para todas las veces restantes
-   while(diferencia>error_1 && t_aux<100){ 
+   while(diferencia>error_1 && t_aux<200){ 
     calculo_presion();
     t_aux = t_aux +1;
    }
