@@ -39,7 +39,7 @@ int main(void){
   diferencia=0.001;
 ///////////////////////////////////////// Calculo de presion /////////////////////////////////////////  
   if(t==1){  // Inicio del IF ...... Solo para la primera vez que calculo las presiones
-   while(diferencia>error && t_aux<5000000){ 
+   while(diferencia>error && t_aux<10000000){ 
     calculo_presion();
     t_aux = t_aux +1;
    }
