@@ -454,6 +454,9 @@ void inicializar_saturacion(){
       }
 
   }
+  
+  
+  //////////////////////////////////////////////////////////////
   /*
       if(CB==0){
       for(f=85 ; f<89 ; f++){
@@ -1610,8 +1613,8 @@ void calcular_lambdas(){
   calcular_lambda_t();
   calcular_lambda_d();
   
-  calcular_lambda_d_1_2_3_4_C();
-  calcular_lambda_t_1_2_3_4_C(); 
+  calcular_lambda_d_1_2_3_4(); //_C
+  calcular_lambda_t_1_2_3_4_A(); //_C
   
   calcular_lambda_n_1_2_3_4();
   calcular_lambda_w_1_2_3_4();

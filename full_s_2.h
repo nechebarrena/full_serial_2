@@ -14,14 +14,14 @@
 #define CB 0   // 0 para una condicion de borde tipo canal y 1 para una tipo FQS
 
 #define mu_w 1.0
-#define mu_n 8.0
+#define mu_n 32.0
 
 #define q_n 0.1
 #define q_w 0.1
-#define po 0.1 // el grafico esta con 0.5
+#define po 0.0 // el grafico esta con 0.5
 
 #define cachito 0.0000000001
-#define error 0.00000000005  //0.0000000001 es lo que venia usando.
+#define error 0.0000000001  //0.0000000001 es lo que venia usando.
 #define error_1 0.0000001
 
 #define courant 0.1

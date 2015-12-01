@@ -28,26 +28,35 @@ int main(void){
   
   
 //////////////////////////////////////////////////////////////////////////////////////////////////////    
-  while(bandera==0){
+  while(bandera==0  ){
   //for(t=1 ; t<= iteraciones ; t++){ // Inicio del FOR
   
   calcular_lambdas();
   calcular_presion_capilar();
   calcular_termino_presion_capilar();
+  /*
+  if( ( t % 100 ) == 0){ 
+  guardar_o(saturacion,t); // AGREGADO
+  guardar_o(presion,t+1000000); // AGREGADO
+  guardar_o(presion_capilar,t+2000000); // AGREGADO
+  guardar_o(termino_presion_capilar,t+3000000); // AGREGADO
+  }
+  */
   
   t_aux=0;
   diferencia=0.001;
 ///////////////////////////////////////// Calculo de presion /////////////////////////////////////////  
   if(t==1){  // Inicio del IF ...... Solo para la primera vez que calculo las presiones
-   while(diferencia>error && t_aux<10000000){ 
+   while(diferencia>error && t_aux<5000000){ 
     calculo_presion();
     t_aux = t_aux +1;
+    //printf("\n %i",t_aux);
    }
   }// Fin del IF
   
   
   if(t>1){  // Inicio del IF ....... Para todas las veces restantes
-   while(diferencia>error_1 && t_aux<200){ 
+   while(diferencia>error_1 && t_aux<150){ 
     calculo_presion();
     t_aux = t_aux +1;
    }
