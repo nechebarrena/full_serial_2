@@ -10,14 +10,15 @@ funciones y sus descripciones.
 *******************************************************************************************************************
 *******************************************************************************************************************
 
-La ruta donde estoy guardando este repositorio en la notebook es :
+** La ruta donde estoy guardando este repositorio en la notebook es :
 
 /home/nicolas/Documentos/Nicolas/YTEC/full_serial_2
 
 La ruta donde estoy guardando este repositorio en la pc de mi casa es :
+
 /home/poludin/Documentos/Nicolas/YTEC/full_serial_2
 
-La ruta donde estoy guardando este repositorio en la workstation de YTEC es :
+## La ruta donde estoy guardando este repositorio en la workstation de YTEC es :
 
 
 El servidor remoto donde lo estoy guardando es :
